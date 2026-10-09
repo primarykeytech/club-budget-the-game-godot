@@ -120,7 +120,7 @@ text = "😄 Confident"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25098, 0.74902, 0.94902, 1)
 theme_override_font_sizes/font_size = 13
-text = "Coach Taylor"
+text = "Coach John"
 
 [node name="MoodLabel" type="Label" parent="HBox/CoachCard/Content/VBox"]
 layout_mode = 2
