@@ -73,10 +73,12 @@ func _start_current_week() -> void:
 		var outcome := state.apply_event(event)
 		hud.update_hud(state)
 		stage_view.update_stage("Coach", state.happiness)
+		stage_view.show_morale_deltas(outcome["effects"])
 
 		var loss_check := state.check_immediate_loss()
 		if loss_check["lost"]:
 			_play_sfx("game_over")
+			_shake_gameplay_view(12.0)
 			end_game_modal.open_game_over(loss_check["reason"], state)
 			return
 
@@ -111,6 +113,7 @@ func _on_math_resolved(was_correct: bool) -> void:
 		_play_sfx("correct")
 	else:
 		_play_sfx("alarm")
+		_shake_gameplay_view(5.0)
 	_resolve_choice(was_correct)
 
 func _resolve_choice(math_correct: Variant) -> void:
@@ -126,10 +129,12 @@ func _resolve_choice(math_correct: Variant) -> void:
 
 	hud.update_hud(state)
 	stage_view.update_stage(pending_choice.reaction, state.happiness)
+	stage_view.show_morale_deltas(outcome["effects"])
 
 	var loss_check := state.check_immediate_loss()
 	if loss_check["lost"]:
 		_play_sfx("game_over")
+		_shake_gameplay_view(12.0)
 		end_game_modal.open_game_over(loss_check["reason"], state)
 		return
 
@@ -168,6 +173,16 @@ func _hide_all_modals() -> void:
 	event_modal.visible = false
 	summary_modal.visible = false
 	end_game_modal.visible = false
+
+func _shake_gameplay_view(intensity: float = 6.0) -> void:
+	if not is_inside_tree() or not gameplay_view:
+		return
+	var orig_pos: Vector2 = gameplay_view.position
+	var tween := create_tween()
+	for i in range(4):
+		var offset := Vector2(randf_range(-intensity, intensity), randf_range(-intensity, intensity))
+		tween.tween_property(gameplay_view, "position", orig_pos + offset, 0.04)
+	tween.tween_property(gameplay_view, "position", orig_pos, 0.04)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not gameplay_view.visible:

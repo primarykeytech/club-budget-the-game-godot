@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://df7k4m9p2v1x3"]
+
+[ext_resource type="Script" path="res://scripts/ui/effects/confetti_burst.gd" id="1_confetti"]
+
+[sub_resource type="Gradient" id="Gradient_confetti"]
+offsets = PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1)
+colors = PackedColorArray(1, 0.839216, 0.239216, 1, 0.239216, 0.839216, 1, 1, 1, 0.352941, 0.627451, 1, 0.352941, 0.901961, 0.470588, 1, 0.901961, 0.470588, 1, 1, 1, 0.941176, 0.588235, 0)
+
+[node name="ConfettiBurst" type="Node2D"]
+script = ExtResource("1_confetti")
+
+[node name="LeftParticles" type="CPUParticles2D" parent="."]
+position = Vector2(200, 680)
+emitting = false
+amount = 65
+lifetime = 2.2
+one_shot = true
+explosiveness = 0.85
+direction = Vector2(0.6, -1)
+spread = 28.0
+gravity = Vector2(0, 360)
+initial_velocity_min = 340.0
+initial_velocity_max = 580.0
+angular_velocity_min = -240.0
+angular_velocity_max = 240.0
+scale_amount_min = 6.0
+scale_amount_max = 11.0
+color_ramp = SubResource("Gradient_confetti")
+
+[node name="RightParticles" type="CPUParticles2D" parent="."]
+position = Vector2(1080, 680)
+emitting = false
+amount = 65
+lifetime = 2.2
+one_shot = true
+explosiveness = 0.85
+direction = Vector2(-0.6, -1)
+spread = 28.0
+gravity = Vector2(0, 360)
+initial_velocity_min = 340.0
+initial_velocity_max = 580.0
+angular_velocity_min = -240.0
+angular_velocity_max = 240.0
+scale_amount_min = 6.0
+scale_amount_max = 11.0
+color_ramp = SubResource("Gradient_confetti")

@@ -52,6 +52,14 @@ Players act as treasurer and advisor for an afterschool math club, navigating fi
   - Looping background theme music: `theme_music.wav` (playful, cozy 16-bar math club theme).
   - In-game HUD mute button toggle ("🔊" / "🔇") and global keyboard shortcut (`M`).
 
+### Phase 4: Game Polish & Juicing ✅
+- **Animated Budget Rolling Counter:** Smooth numerical count-up/count-down interpolations (`Tween.tween_method`) with scale-punch feedback on balance shifts.
+- **Floating Transaction Popups:** Dynamic rising badges (`+$45.00` green / `-$28.00` red) spawned in the HUD upon every financial change.
+- **Floating Morale Indicators:** Rising morale delta badges (`+5% 😃` / `-8% 😟`) directly over character portrait cards in the classroom stage with card scale bounces.
+- **Confetti Particle Cannon (`CPUParticles2D`):** Colorful multi-cannon celebratory confetti burst on correct math challenge solutions and Gold Ribbon season victory.
+- **Modal Transitions:** Snappy pop-and-bounce card entrance animations (`TRANS_BACK`, `EASE_OUT`) across all modals.
+- **Critical Danger Alerts:** Screen trauma shake on bankruptcy or mutiny/boycott loss events, and pulsing alert warning text on low morale or deficit risks.
+
 ---
 
 ## 🧪 Automated Testing

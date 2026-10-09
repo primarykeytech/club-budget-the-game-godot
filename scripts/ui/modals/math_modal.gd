@@ -3,12 +3,14 @@ extends PanelContainer
 
 signal math_resolved(was_correct: bool)
 
+@onready var card: PanelContainer = $Card
 @onready var prompt_label: Label = $Card/VBox/PromptLabel
 @onready var options_container: VBoxContainer = $Card/VBox/OptionsContainer
 @onready var feedback_panel: PanelContainer = $Card/VBox/FeedbackPanel
 @onready var feedback_label: Label = $Card/VBox/FeedbackPanel/FeedbackLabel
 @onready var continue_btn: Button = $Card/VBox/ContinueButton
 
+var confetti_scene: PackedScene = preload("res://scenes/ui/effects/confetti_burst.tscn")
 var current_challenge: MathChallenge = null
 var answered: bool = false
 var is_correct: bool = false
@@ -42,6 +44,17 @@ func open_challenge(challenge: MathChallenge) -> void:
 		options_container.add_child(btn)
 
 	visible = true
+	_animate_open()
+
+func _animate_open() -> void:
+	if not is_inside_tree():
+		return
+	card.pivot_offset = card.size / 2.0
+	card.scale = Vector2(0.85, 0.85)
+	modulate.a = 0.0
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(self, "modulate:a", 1.0, 0.18)
+	tween.tween_property(card, "scale", Vector2(1.0, 1.0), 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _on_option_chosen(chosen_val: float) -> void:
 	if answered:
@@ -63,6 +76,9 @@ func _on_option_chosen(chosen_val: float) -> void:
 		feedback_label.text = "🎉 Correct! (%s%.2f)\nEarned +%d Bonus Happiness across stakeholders!" % [
 			current_challenge.unit, current_challenge.answer, current_challenge.bonus_happiness
 		]
+		# Spawn celebratory confetti
+		var confetti = confetti_scene.instantiate()
+		add_child(confetti)
 	else:
 		style.bg_color = Color(0.40, 0.12, 0.12, 0.95)
 		style.border_color = Color("#ef4444")

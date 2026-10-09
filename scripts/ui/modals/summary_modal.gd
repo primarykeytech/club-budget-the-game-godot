@@ -3,6 +3,7 @@ extends PanelContainer
 
 signal summary_dismissed()
 
+@onready var card: PanelContainer = $Card
 @onready var reaction_label: Label = $Card/VBox/ReactionLabel
 @onready var budget_delta_label: Label = $Card/VBox/StatsBox/VBox/BudgetDeltaLabel
 @onready var morale_delta_label: Label = $Card/VBox/StatsBox/VBox/MoraleDeltaLabel
@@ -36,7 +37,18 @@ func open_summary(reaction_text: String, net_cash: float, effects: Dictionary, n
 		morale_delta_label.text = "Morale Shifts: %s" % ", ".join(eff_parts)
 
 	visible = true
+	_animate_open()
 	proceed_btn.grab_focus()
+
+func _animate_open() -> void:
+	if not is_inside_tree():
+		return
+	card.pivot_offset = card.size / 2.0
+	card.scale = Vector2(0.85, 0.85)
+	modulate.a = 0.0
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(self, "modulate:a", 1.0, 0.18)
+	tween.tween_property(card, "scale", Vector2(1.0, 1.0), 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _on_proceed() -> void:
 	visible = false

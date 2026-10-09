@@ -3,6 +3,7 @@ extends PanelContainer
 
 signal event_dismissed()
 
+@onready var card: PanelContainer = $Card
 @onready var title_label: Label = $Card/VBox/TitleLabel
 @onready var description_label: Label = $Card/VBox/DescriptionLabel
 @onready var cost_label: Label = $Card/VBox/ImpactRow/CostLabel
@@ -39,7 +40,18 @@ func open_event(event: GameEvent) -> void:
 		morale_label.text = "Morale shift: %s" % ", ".join(eff_parts)
 
 	visible = true
+	_animate_open()
 	dismiss_btn.grab_focus()
+
+func _animate_open() -> void:
+	if not is_inside_tree():
+		return
+	card.pivot_offset = card.size / 2.0
+	card.scale = Vector2(0.85, 0.85)
+	modulate.a = 0.0
+	var tween := create_tween().set_parallel(true)
+	tween.tween_property(self, "modulate:a", 1.0, 0.18)
+	tween.tween_property(card, "scale", Vector2(1.0, 1.0), 0.22).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 
 func _on_dismiss() -> void:
 	visible = false

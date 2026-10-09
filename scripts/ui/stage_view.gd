@@ -29,7 +29,28 @@ func update_stage(speaker: String, happiness_dict: Dictionary) -> void:
 	_update_card_mood(coach_mood_label, coach_avatar, float(happiness_dict.get("coaches", 70.0)), ["😄 Confident", "🙂 Engaged", "😓 Burnt Out", "😫 Resigned"])
 	_update_card_mood(parent_mood_label, parent_avatar, float(happiness_dict.get("parents", 70.0)), ["😊 Supportive", "🙂 Neutral", "🤨 Concerned", "😡 Boycott"])
 
+func show_morale_deltas(effects: Dictionary) -> void:
+	_trigger_delta(student_card, int(effects.get("students", 0)))
+	_trigger_delta(coach_card, int(effects.get("coaches", 0)))
+	_trigger_delta(parent_card, int(effects.get("parents", 0)))
+
+func _trigger_delta(card: PanelContainer, delta: int) -> void:
+	if delta == 0:
+		return
+
+	var sign_str := "+" if delta > 0 else ""
+	var col := Color("#10b981") if delta > 0 else Color("#ef4444")
+	var pos := Vector2(card.size.x / 2.0 - 15.0, 10.0)
+	FloatingIndicator.spawn(card, "%s%d%%" % [sign_str, delta], col, pos, 17)
+
+	# Card bounce animation
+	card.pivot_offset = card.size / 2.0
+	var tween := create_tween()
+	tween.tween_property(card, "scale", Vector2(1.06, 1.06), 0.12).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(card, "scale", Vector2(1.0, 1.0), 0.22).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+
 func _set_speaker_highlight(card: PanelContainer, is_speaking: bool) -> void:
+	card.pivot_offset = card.size / 2.0
 	if is_speaking:
 		card.modulate = Color(1.2, 1.2, 1.0, 1.0) # Subtle glow
 		card.scale = Vector2(1.02, 1.02)
