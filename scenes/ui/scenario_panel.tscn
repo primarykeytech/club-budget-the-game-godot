@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6s7b8y9a0w1e"]
+
+[ext_resource type="Script" path="res://scripts/ui/scenario_panel.gd" id="1_scenario_panel"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_scen_bg"]
+content_margin_left = 24.0
+content_margin_top = 18.0
+content_margin_right = 24.0
+content_margin_bottom = 18.0
+bg_color = Color(0.0666667, 0.101961, 0.168627, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.286275, 0.407843, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="ScenarioPanel" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_scen_bg")
+script = ExtResource("1_scenario_panel")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Header" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TitleLabel" type="Label" parent="VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.960784, 0.768627, 0.298039, 1)
+theme_override_font_sizes/font_size = 20
+text = "Scenario Title"
+
+[node name="SpeakerLabel" type="Label" parent="VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.580392, 0.639216, 0.721569, 1)
+theme_override_font_sizes/font_size = 13
+text = "Speaker intro line"
+
+[node name="DescriptionLabel" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_font_sizes/font_size = 15
+text = "Detailed situation description..."
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="VBox"]
+layout_mode = 2
+
+[node name="ChoicesTitle" type="Label" parent="VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.580392, 0.639216, 0.721569, 1)
+theme_override_font_sizes/font_size = 13
+text = "SELECT AN ACTION FOR THIS WEEK:"
+
+[node name="ChoicesContainer" type="VBoxContainer" parent="VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10

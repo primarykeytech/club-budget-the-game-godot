@@ -1,0 +1,133 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmh5j1h6r2w4q"]
+
+[ext_resource type="Script" path="res://scripts/ui/stage_view.gd" id="1_stage"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stage_bg"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(0.0823529, 0.188235, 0.133333, 0.95)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.439216, 0.286275, 0.14902, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_char_card"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.0627451, 0.113725, 0.180392, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.247059, 0.345098, 0.478431, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="StageView" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 115)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 115.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_stage_bg")
+script = ExtResource("1_stage")
+
+[node name="HBox" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="StudentCard" type="PanelContainer" parent="HBox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_char_card")
+
+[node name="VBox" type="VBoxContainer" parent="HBox/StudentCard"]
+layout_mode = 2
+alignment = 1
+
+[node name="AvatarLabel" type="Label" parent="HBox/StudentCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "🧢"
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="HBox/StudentCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.960784, 0.843137, 0.423529, 1)
+theme_override_font_sizes/font_size = 13
+text = "Jordan (Student)"
+horizontal_alignment = 1
+
+[node name="MoodLabel" type="Label" parent="HBox/StudentCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "SATISFIED"
+horizontal_alignment = 1
+
+[node name="CoachCard" type="PanelContainer" parent="HBox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_char_card")
+
+[node name="VBox" type="VBoxContainer" parent="HBox/CoachCard"]
+layout_mode = 2
+alignment = 1
+
+[node name="AvatarLabel" type="Label" parent="HBox/CoachCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "👓"
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="HBox/CoachCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25098, 0.74902, 0.94902, 1)
+theme_override_font_sizes/font_size = 13
+text = "Coach Taylor"
+horizontal_alignment = 1
+
+[node name="MoodLabel" type="Label" parent="HBox/CoachCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "SATISFIED"
+horizontal_alignment = 1
+
+[node name="ParentCard" type="PanelContainer" parent="HBox"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_char_card")
+
+[node name="VBox" type="VBoxContainer" parent="HBox/ParentCard"]
+layout_mode = 2
+alignment = 1
+
+[node name="AvatarLabel" type="Label" parent="HBox/ParentCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+text = "☕"
+horizontal_alignment = 1
+
+[node name="NameLabel" type="Label" parent="HBox/ParentCard/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.85098, 0.580392, 0.94902, 1)
+theme_override_font_sizes/font_size = 13
+text = "Mrs. Chen (Booster)"
+horizontal_alignment = 1
+
+[node name="MoodLabel" type="Label" parent="HBox/ParentCard/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "SATISFIED"
+horizontal_alignment = 1

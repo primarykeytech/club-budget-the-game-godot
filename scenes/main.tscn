@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://b0c8r6q4t2y5m"]
+
+[ext_resource type="Script" path="res://scripts/ui/game_controller.gd" id="1_controller"]
+[ext_resource type="PackedScene" path="res://scenes/ui/title_screen.tscn" id="2_title"]
+[ext_resource type="PackedScene" path="res://scenes/ui/setup_screen.tscn" id="3_setup"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="4_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/stage_view.tscn" id="5_stage"]
+[ext_resource type="PackedScene" path="res://scenes/ui/scenario_panel.tscn" id="6_scenario"]
+[ext_resource type="PackedScene" path="res://scenes/ui/modals/math_modal.tscn" id="7_math"]
+[ext_resource type="PackedScene" path="res://scenes/ui/modals/event_modal.tscn" id="8_event"]
+[ext_resource type="PackedScene" path="res://scenes/ui/modals/summary_modal.tscn" id="9_summary"]
+[ext_resource type="PackedScene" path="res://scenes/ui/modals/end_game_modal.tscn" id="10_end"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main_bg"]
+bg_color = Color(0.027451, 0.0431373, 0.0705882, 1)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_controller")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_main_bg")
+
+[node name="TitleScreen" parent="." instance=ExtResource("2_title")]
+layout_mode = 1
+
+[node name="SetupScreen" parent="." instance=ExtResource("3_setup")]
+visible = false
+layout_mode = 1
+
+[node name="GameplayView" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="GameplayView"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HUD" parent="GameplayView/VBox" instance=ExtResource("4_hud")]
+layout_mode = 2
+
+[node name="StageView" parent="GameplayView/VBox" instance=ExtResource("5_stage")]
+layout_mode = 2
+
+[node name="ScenarioPanel" parent="GameplayView/VBox" instance=ExtResource("6_scenario")]
+layout_mode = 2
+
+[node name="Modals" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MathModal" parent="Modals" instance=ExtResource("7_math")]
+visible = false
+layout_mode = 1
+
+[node name="EventModal" parent="Modals" instance=ExtResource("8_event")]
+visible = false
+layout_mode = 1
+
+[node name="SummaryModal" parent="Modals" instance=ExtResource("9_summary")]
+visible = false
+layout_mode = 1
+
+[node name="EndGameModal" parent="Modals" instance=ExtResource("10_end")]
+visible = false
+layout_mode = 1

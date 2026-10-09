@@ -1,0 +1,167 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2k8m4n6q9r1x"]
+
+[ext_resource type="Script" path="res://scripts/ui/setup_screen.gd" id="1_setup"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.04, 0.07, 0.12, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 40.0
+content_margin_top = 32.0
+content_margin_right = 40.0
+content_margin_bottom = 32.0
+bg_color = Color(0.08, 0.13, 0.22, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.38, 0.58, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="SetupScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_setup")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(680, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Card"]
+layout_mode = 2
+theme_override_constants/separation = 22
+
+[node name="TitleBox" type="VBoxContainer" parent="CenterContainer/Card/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="CenterContainer/Card/VBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.74, 0.22, 1)
+theme_override_font_sizes/font_size = 26
+text = "CLUB SEASON CONFIGURATION"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/Card/VBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.75, 0.88, 1)
+theme_override_font_sizes/font_size = 14
+text = "Set up your club parameters before the school season begins."
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Card/VBox"]
+layout_mode = 2
+
+[node name="FormGrid" type="GridContainer" parent="CenterContainer/Card/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 3
+
+[node name="NameLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+text = "Club Name:"
+
+[node name="PresetOption" type="OptionButton" parent="CenterContainer/Card/VBox/FormGrid"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="CustomNameInput" type="LineEdit" parent="CenterContainer/Card/VBox/FormGrid"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+editable = false
+
+[node name="BudgetLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+text = "Starting Budget:"
+
+[node name="BudgetSlider" type="HSlider" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 100.0
+max_value = 1000.0
+step = 25.0
+value = 300.0
+
+[node name="BudgetValLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+text = "$300"
+
+[node name="StudentsLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+text = "Club Roster:"
+
+[node name="StudentsSlider" type="HSlider" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 4.0
+max_value = 36.0
+step = 2.0
+value = 16.0
+
+[node name="StudentsValLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+text = "16 Students"
+
+[node name="WeeksLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+text = "Season Length:"
+
+[node name="WeeksSlider" type="HSlider" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = 4.0
+max_value = 30.0
+step = 2.0
+value = 12.0
+
+[node name="WeeksValLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+text = "12 Weeks"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/Card/VBox"]
+layout_mode = 2
+
+[node name="ButtonGroup" type="HBoxContainer" parent="CenterContainer/Card/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BackButton" type="Button" parent="CenterContainer/Card/VBox/ButtonGroup"]
+custom_minimum_size = Vector2(160, 46)
+layout_mode = 2
+text = "Back to Title"
+
+[node name="LaunchButton" type="Button" parent="CenterContainer/Card/VBox/ButtonGroup"]
+custom_minimum_size = Vector2(220, 46)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Launch Season 🚀"

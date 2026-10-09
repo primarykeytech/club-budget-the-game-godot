@@ -15,36 +15,40 @@ Players act as treasurer and advisor for an afterschool math club, navigating fi
 
 ---
 
-## 🚀 Phase 1 Status: Engine Setup & Simulation Logic Port ✅
+## 🚀 Development Status
 
-Phase 1 is complete! The complete simulation core, data-driven scenario pipelines, dynamic formula parsing, and business logic have been ported to GDScript and validated against automated unit tests.
+### Phase 1: Engine Setup & Simulation Logic Port ✅
+- Godot 4 project configured with the **Compatibility renderer (WebGL 2 / OpenGL 3)** for friction-free in-browser deployment.
+- Responsive 1280×720 widescreen viewport with `canvas_items` stretch mode.
+- Complete data pipeline loading [`data/scenarios.json`](res://data/scenarios.json) and [`data/events.json`](res://data/events.json).
+- High-precision formula parser (`FormulaEvaluator.gd`) supporting context variables (`students`, `students_x2`, `half_students`) and Python-style division normalization.
+- Full simulation model (`ClubState.gd`, `ScenarioManager.gd`, `Choice.gd`, `MathChallenge.gd`, `GameEvent.gd`, `Scenario.gd`).
 
-### What Was Built:
-1. **Engine & Configuration:**
-   - Godot 4 project configured with the **Compatibility renderer (WebGL 2 / OpenGL 3)** for lightweight, friction-free browser deployment.
-   - Canvas items stretch mode at 1280×720 viewport resolution.
-2. **Data Pipelines:**
-   - Native integration with [`data/scenarios.json`](res://data/scenarios.json) and [`data/events.json`](res://data/events.json).
-3. **GDScript Simulation Models:**
-   - `FormulaEvaluator.gd`: Safely parses math formulas (e.g., `"0.25 * students"`, `"(3.50 * students * 2) - 15"`) using Godot's built-in `Expression` engine.
-   - `ClubState.gd`: Complete simulation state, ledger transactions, happiness clamping, formatting templates, and victory/defeat rules.
-   - `ScenarioManager.gd`: Season deck generation with randomized non-repeating scenario draws, Week 1 starter scenario lock, and 4-option math challenge distractor generation.
-   - `MathChallenge.gd`, `Choice.gd`, `Scenario.gd`, `GameEvent.gd`: Strongly typed data representations.
-4. **Automated Test Suite:**
-   - Headless test runner in [`tests/test_runner.gd`](res://tests/test_runner.gd) running all 12 core test specifications.
+### Phase 2: UI Layout & State Architecture ✅
+- Complete modular Godot UI node hierarchy with rounded modern cards, high contrast typography, and responsive layouts:
+  - **Main Game Coordinator** ([`scenes/main.tscn`](res://scenes/main.tscn) & [`game_controller.gd`](res://scripts/ui/game_controller.gd)): Coordinates state transitions, keyboard shortcuts (`1`, `2`, `3`, `Space`, `Enter`), and modal management.
+  - **HUD Dashboard** ([`scenes/ui/hud.tscn`](res://scenes/ui/hud.tscn)): Live budget counter, week indicator, dynamic burn-rate allowance and danger warnings, and 3 color-thresholded stakeholder morale progress bars with smooth animated tweens.
+  - **Stage View** ([`scenes/ui/stage_view.tscn`](res://scenes/ui/stage_view.tscn)): Classroom chalkboard environment with reactive character cards (Jordan the student rep, Coach Taylor, and Booster Parent Mrs. Chen) with speaking highlights and emotional mood states (Thrilled, Satisfied, Stressed, Crisis).
+  - **Scenario Panel** ([`scenes/ui/scenario_panel.tscn`](res://scenes/ui/scenario_panel.tscn)): Narrative description cards and 3 styled action buttons displaying cost, revenue, morale tags, and math badges.
+  - **Modals:**
+    - [`MathModal`](res://scenes/ui/modals/math_modal.tscn): Interactive multiple-choice challenge modal with instant feedback.
+    - [`EventModal`](res://scenes/ui/modals/event_modal.tscn): Mid-season unexpected crisis / grant announcements.
+    - [`SummaryModal`](res://scenes/ui/modals/summary_modal.tscn): End-of-week ledger and reaction quote recap.
+    - [`EndGameModal`](res://scenes/ui/modals/end_game_modal.tscn): Victory celebration / season failure summary with restart capabilities.
+  - **Title & Setup Screens:**
+    - [`TitleScreen`](res://scenes/ui/title_screen.tscn): Objective overview and prompt to start.
+    - [`SetupScreen`](res://scenes/ui/setup_screen.tscn): Name selection presets, starting budget slider ($100–$1000), student roster slider (4–36), and season length slider (4–30).
 
 ---
 
-## 🧪 Running the Test Suite
+## 🧪 Automated Testing
 
-You can execute the automated test suite headlessly via the Godot CLI:
+Both the model logic and UI state transitions are backed by headless automated test suites runnable via the Godot CLI:
 
+### 1. Simulation Logic Test Suite (12 Tests)
 ```powershell
-# Windows
 & "C:\Program Files\Godot\Godot_v4.7.2-stable_win64_console.exe" --headless -s res://tests/test_runner.gd
 ```
-
-All 12 test suites will run and report status with zero GUI overhead:
 * Initial state validation
 * Formula evaluation & context variable injection
 * Choice deduction & ledger tracking
@@ -53,6 +57,18 @@ All 12 test suites will run and report status with zero GUI overhead:
 * Victory and missed-target season endings
 * ScenarioManager JSON loading & deck shuffling
 * Dynamic template string formatting
+
+### 2. UI Flow Integration Test Suite (7 Tests)
+```powershell
+& "C:\Program Files\Godot\Godot_v4.7.2-stable_win64_console.exe" --headless res://tests/test_ui.tscn
+```
+* Main scene instantiation & initial visibility
+* Title to Setup screen transition
+* Setup to Gameplay transition & parameter injection
+* Weekly choice selection, math resolution, and summary modal flow
+* Math modal answer evaluation & feedback display
+* Game Over modal triggering on immediate loss
+* Play Again / Restart flow returning to setup
 
 ---
 
@@ -63,17 +79,26 @@ club-budget-the-game-godot/
 ├── data/
 │   ├── scenarios.json            # Dynamic scenario cards & math challenges
 │   └── events.json               # Unexpected mid-season events
+├── scenes/
+│   ├── main.tscn                 # Primary game viewport & state coordinator
+│   └── ui/
+│       ├── hud.tscn              # Top bar, budget & stakeholder morale gauges
+│       ├── stage_view.tscn       # Classroom vignette & reactive character cards
+│       ├── scenario_panel.tscn   # Weekly scenario narrative & choice cards
+│       ├── title_screen.tscn     # Title screen & rules overview
+│       ├── setup_screen.tscn     # Club configuration sliders & presets
+│       └── modals/
+│           ├── math_modal.tscn   # Multiple-choice math challenge dialog
+│           ├── event_modal.tscn  # Random event popup
+│           ├── summary_modal.tscn# Weekly ledger recap
+│           └── end_game_modal.tscn# Victory / Game Over summary
 ├── scripts/
-│   └── model/
-│       ├── formula_evaluator.gd  # Expression-based dynamic formula parser
-│       ├── math_challenge.gd     # Math challenge data model
-│       ├── choice.gd             # Scenario choice model
-│       ├── scenario.gd           # Scenario model
-│       ├── game_event.gd         # Random event model
-│       ├── club_state.gd         # Core simulation engine & win/loss checks
-│       └── scenario_manager.gd   # Season deck manager & JSON loader
+│   ├── model/                    # Simulation logic & data models
+│   └── ui/                       # UI controllers & modal logic
 ├── tests/
-│   └── test_runner.gd            # Headless automated unit test runner
+│   ├── test_runner.gd            # Headless model test runner
+│   ├── test_ui.tscn              # Headless UI integration test scene
+│   └── test_ui_flow.gd           # Headless UI flow integration tests
 ├── .gitignore
 ├── project.godot                 # Godot 4.7 project settings
 └── README.md
@@ -81,10 +106,7 @@ club-budget-the-game-godot/
 
 ---
 
-## ⏭️ Next Step: Phase 2 (UI Layout & State Flow)
-- Build the Godot `Control` node tree for screens:
-  - Setup screen (parameters & custom naming)
-  - HUD dashboard (Budget, Week, 3 Stakeholder meters)
-  - Scenario dialogue & choice buttons
-  - Math challenge modal overlay
-  - Week summary & Game Over / Victory screens
+## ⏭️ Next Step: Phase 3 (Art & Audio Assets)
+- Custom illustrated portraits / sprites for Jordan, Coach Taylor, and Mrs. Chen.
+- Modern high-definition sound effects (clicks, coins/cash, alert buzzer, fanfare).
+- Cozy background music track (OGG loop).

@@ -1,0 +1,119 @@
+[gd_scene load_steps=5 format=3 uid="uid://dd8n7k3v2m5x9"]
+
+[ext_resource type="Script" path="res://scripts/ui/title_screen.gd" id="1_title"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.04, 0.07, 0.12, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 40.0
+content_margin_top = 32.0
+content_margin_right = 40.0
+content_margin_bottom = 32.0
+bg_color = Color(0.08, 0.13, 0.22, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.38, 0.58, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rule_box"]
+content_margin_left = 20.0
+content_margin_top = 16.0
+content_margin_right = 20.0
+content_margin_bottom = 16.0
+bg_color = Color(0.05, 0.08, 0.14, 0.8)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.18, 0.25, 0.38, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_title")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(680, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="CenterContainer/Card"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleBox" type="VBoxContainer" parent="CenterContainer/Card/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Title" type="Label" parent="CenterContainer/Card/VBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0.74, 0.22, 1)
+theme_override_font_sizes/font_size = 32
+text = "CLUB BUDGET: THE GAME 🧮🎮"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="CenterContainer/Card/VBox/TitleBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65, 0.75, 0.88, 1)
+theme_override_font_sizes/font_size = 15
+text = "An Afterschool Math Club Resource & Morale Simulation"
+horizontal_alignment = 1
+
+[node name="RulesBox" type="PanelContainer" parent="CenterContainer/Card/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rule_box")
+
+[node name="RulesLabel" type="Label" parent="CenterContainer/Card/VBox/RulesBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.92, 0.96, 1)
+theme_override_font_sizes/font_size = 14
+text = "• OBJECTIVE: Keep Student, Coach, and Parent morale >= 80% by season end.
+• IMMEDIATE LOSS: Any stakeholder morale < 40% (Mutiny / Boycott) or Budget < $0.
+• 5th-GRADE MATH: Solve scenario math problems for bonus morale and savings!
+• BURNOUT MANAGEMENT: Watch your safe weekly burn rate as the season unfolds."
+autowrap_mode = 3
+
+[node name="StartButton" type="Button" parent="CenterContainer/Card/VBox"]
+custom_minimum_size = Vector2(260, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 18
+text = "Start Club Season"
+
+[node name="Hint" type="Label" parent="CenterContainer/Card/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.45, 0.55, 0.68, 1)
+theme_override_font_sizes/font_size = 12
+text = "Press ENTER / SPACE or Click to Begin"
+horizontal_alignment = 1

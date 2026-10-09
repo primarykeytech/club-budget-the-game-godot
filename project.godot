@@ -10,6 +10,7 @@ config/name="Club Budget: The Game"
 config/description="A resource management and math club simulation game."
 config/version="1.0.0"
 config/features=PackedStringArray("4.7", "Compatibility")
+run/main_scene="res://scenes/main.tscn"
 
 [display]
 

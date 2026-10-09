@@ -1,0 +1,95 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1n4m6p8r9s2t"]
+
+[ext_resource type="Script" path="res://scripts/ui/modals/end_game_modal.gd" id="1_end_game_modal"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_backdrop"]
+bg_color = Color(0.02, 0.04, 0.08, 0.88)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 36.0
+content_margin_top = 28.0
+content_margin_right = 36.0
+content_margin_bottom = 28.0
+bg_color = Color(0.08, 0.12, 0.20, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3, 0.45, 0.65, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stats_box"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.05, 0.08, 0.14, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.2, 0.28, 0.4, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="EndGameModal" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_backdrop")
+script = ExtResource("1_end_game_modal")
+
+[node name="Card" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="Card"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="IconLabel" type="Label" parent="Card/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "🏆"
+horizontal_alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Card/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "END STATUS"
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="Card/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.92, 0.96, 1)
+theme_override_font_sizes/font_size = 15
+text = "Summary reason goes here..."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="StatsBox" type="PanelContainer" parent="Card/VBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_stats_box")
+
+[node name="StatsLabel" type="Label" parent="Card/VBox/StatsBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78, 0.84, 0.92, 1)
+theme_override_font_sizes/font_size = 14
+text = "Stats details..."
+horizontal_alignment = 1
+
+[node name="RestartButton" type="Button" parent="Card/VBox"]
+custom_minimum_size = Vector2(220, 44)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play Again / Setup"

@@ -15,6 +15,9 @@ static func evaluate(formula_variant: Variant, students_count: int) -> float:
 	if formula_str.is_empty() or formula_str == "0":
 		return 0.0
 
+	# Replace Python integer division with standard division
+	formula_str = formula_str.replace("//", "/")
+
 	# If formula_str is a pure number like "18.50" or "-45.00"
 	if formula_str.is_valid_float() or formula_str.is_valid_int():
 		return snappedf(float(formula_str), 0.01)

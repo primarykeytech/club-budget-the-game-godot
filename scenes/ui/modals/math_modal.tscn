@@ -1,0 +1,103 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7h4k1m8n9q2r"]
+
+[ext_resource type="Script" path="res://scripts/ui/modals/math_modal.gd" id="1_math_modal"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_backdrop"]
+bg_color = Color(0.02, 0.04, 0.08, 0.82)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 30.0
+content_margin_top = 24.0
+content_margin_right = 30.0
+content_margin_bottom = 24.0
+bg_color = Color(0.08, 0.12, 0.20, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.22, 0.45, 0.75, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_feedback"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.06, 0.35, 0.2, 0.95)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.0627451, 0.72549, 0.505882, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MathModal" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_backdrop")
+script = ExtResource("1_math_modal")
+
+[node name="Card" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="Card"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="Card/VBox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="Label" parent="Card/VBox/Header"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "📐"
+
+[node name="Title" type="Label" parent="Card/VBox/Header"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.74, 0.98, 1)
+theme_override_font_sizes/font_size = 20
+text = "Math Challenge!"
+
+[node name="PromptLabel" type="Label" parent="Card/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)
+theme_override_font_sizes/font_size = 16
+text = "Each pencil costs $0.25. How much for all 16 students?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="OptionsContainer" type="VBoxContainer" parent="Card/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="FeedbackPanel" type="PanelContainer" parent="Card/VBox"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_feedback")
+
+[node name="FeedbackLabel" type="Label" parent="Card/VBox/FeedbackPanel"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Feedback text..."
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Card/VBox"]
+visible = false
+custom_minimum_size = Vector2(160, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Continue"
