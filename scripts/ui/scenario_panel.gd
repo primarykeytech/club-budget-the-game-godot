@@ -28,7 +28,7 @@ func display_scenario(scenario: Scenario) -> void:
 func _create_choice_card(index: int, choice: Choice) -> PanelContainer:
 	var panel := PanelContainer.new()
 	var box_style := StyleBoxFlat.new()
-	box_style.set_content_margin_all(10.0)
+	box_style.set_content_margin_all(8.0)
 	box_style.bg_color = Color(0.09, 0.14, 0.22, 0.95)
 	box_style.border_color = Color(0.25, 0.35, 0.48, 1.0)
 	box_style.set_border_width_all(1)
@@ -44,49 +44,17 @@ func _create_choice_card(index: int, choice: Choice) -> PanelContainer:
 	btn.text = choice.text
 	btn.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
+	btn.custom_minimum_size = Vector2(0, 44)
+	btn.add_theme_font_size_override("font_size", 15)
 	btn.pressed.connect(func(): choice_selected.emit(index))
 	hbox.add_child(btn)
 
-	# Financial tag
-	var net_cost := choice.revenue - choice.cost
-	var cost_label := Label.new()
-	cost_label.custom_minimum_size = Vector2(90, 0)
-	cost_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	if net_cost > 0.0:
-		cost_label.text = "+$%.2f" % net_cost
-		cost_label.modulate = Color("#10b981")
-	elif net_cost < 0.0:
-		cost_label.text = "-$%.2f" % absf(net_cost)
-		cost_label.modulate = Color("#f87171")
-	else:
-		cost_label.text = "$0.00"
-		cost_label.modulate = Color("#94a3b8")
-	hbox.add_child(cost_label)
-
-	# Morale summary badges
-	var effects_label := Label.new()
-	effects_label.custom_minimum_size = Vector2(210, 0)
-	effects_label.add_theme_font_size_override("font_size", 12)
-	var eff_parts: Array[String] = []
-	for k in ["students", "coaches", "parents"]:
-		var val: int = choice.effects.get(k, 0)
-		if val != 0:
-			var prefix := "+" if val > 0 else ""
-			eff_parts.append("%s %s%d" % [k.substr(0, 3).to_upper(), prefix, val])
-	if eff_parts.is_empty():
-		effects_label.text = "No direct morale shift"
-		effects_label.modulate = Color("#94a3b8")
-	else:
-		effects_label.text = " | ".join(eff_parts)
-		effects_label.modulate = Color("#e2e8f0")
-	hbox.add_child(effects_label)
-
-	# Math icon if math challenge is attached
+	# Optional Math badge indicator
 	if choice.math_challenge != null:
 		var math_badge := Label.new()
 		math_badge.text = "📐 Math Challenge!"
 		math_badge.modulate = Color("#38bdf8")
-		math_badge.add_theme_font_size_override("font_size", 12)
+		math_badge.add_theme_font_size_override("font_size", 13)
 		hbox.add_child(math_badge)
 
 	return panel

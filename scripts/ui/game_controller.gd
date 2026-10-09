@@ -185,6 +185,17 @@ func _shake_gameplay_view(intensity: float = 6.0) -> void:
 	tween.tween_property(gameplay_view, "position", orig_pos, 0.04)
 
 func _unhandled_input(event: InputEvent) -> void:
+	# Global Fullscreen toggle (F11 or F)
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_F11 or event.keycode == KEY_F:
+			var mode := DisplayServer.window_get_mode()
+			if mode == DisplayServer.WINDOW_MODE_FULLSCREEN or mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+			else:
+				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+			get_viewport().set_input_as_handled()
+			return
+
 	if not gameplay_view.visible:
 		return
 
