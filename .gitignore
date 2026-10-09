@@ -1,0 +1,13 @@
+# Godot 4+ cache and imported files
+.godot/
+*.translation
+
+# Export and build outputs
+/build/
+/dist/
+/exports/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
