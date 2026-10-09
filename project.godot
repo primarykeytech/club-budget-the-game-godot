@@ -12,6 +12,10 @@ config/version="1.0.0"
 config/features=PackedStringArray("4.7", "Compatibility")
 run/main_scene="res://scenes/main.tscn"
 
+[autoload]
+
+AudioManager="*res://scripts/audio/audio_manager.gd"
+
 [display]
 
 window/size/viewport_width=1280

@@ -1,15 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0c8r6q4t2y5m"]
+[gd_scene load_steps=13 format=3 uid="uid://b0c8r6q4t2y5m"]
 
 [ext_resource type="Script" path="res://scripts/ui/game_controller.gd" id="1_controller"]
-[ext_resource type="PackedScene" path="res://scenes/ui/title_screen.tscn" id="2_title"]
-[ext_resource type="PackedScene" path="res://scenes/ui/setup_screen.tscn" id="3_setup"]
-[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="4_hud"]
-[ext_resource type="PackedScene" path="res://scenes/ui/stage_view.tscn" id="5_stage"]
-[ext_resource type="PackedScene" path="res://scenes/ui/scenario_panel.tscn" id="6_scenario"]
-[ext_resource type="PackedScene" path="res://scenes/ui/modals/math_modal.tscn" id="7_math"]
-[ext_resource type="PackedScene" path="res://scenes/ui/modals/event_modal.tscn" id="8_event"]
-[ext_resource type="PackedScene" path="res://scenes/ui/modals/summary_modal.tscn" id="9_summary"]
-[ext_resource type="PackedScene" path="res://scenes/ui/modals/end_game_modal.tscn" id="10_end"]
+[ext_resource type="Texture2D" path="res://assets/images/backgrounds/classroom_bg.jpg" id="2_bg"]
+[ext_resource type="PackedScene" path="res://scenes/ui/title_screen.tscn" id="3_title"]
+[ext_resource type="PackedScene" path="res://scenes/ui/setup_screen.tscn" id="4_setup"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="5_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/stage_view.tscn" id="6_stage"]
+[ext_resource type="PackedScene" path="res://scenes/ui/scenario_panel.tscn" id="7_scenario"]
+[ext_resource type="PackedScene" path="res://scenes/ui/modals/math_modal.tscn" id="8_math"]
+[ext_resource type="PackedScene" path="res://scenes/ui/modals/event_modal.tscn" id="9_event"]
+[ext_resource type="PackedScene" path="res://scenes/ui/modals/summary_modal.tscn" id="10_summary"]
+[ext_resource type="PackedScene" path="res://scenes/ui/modals/end_game_modal.tscn" id="11_end"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main_bg"]
 bg_color = Color(0.027451, 0.0431373, 0.0705882, 1)
@@ -32,10 +33,30 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_main_bg")
 
-[node name="TitleScreen" parent="." instance=ExtResource("2_title")]
+[node name="ClassroomBg" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DarkOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.04, 0.07, 0.12, 0.78)
+
+[node name="TitleScreen" parent="." instance=ExtResource("3_title")]
 layout_mode = 1
 
-[node name="SetupScreen" parent="." instance=ExtResource("3_setup")]
+[node name="SetupScreen" parent="." instance=ExtResource("4_setup")]
 visible = false
 layout_mode = 1
 
@@ -56,13 +77,13 @@ theme_override_constants/margin_bottom = 12
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="HUD" parent="GameplayView/VBox" instance=ExtResource("4_hud")]
+[node name="HUD" parent="GameplayView/VBox" instance=ExtResource("5_hud")]
 layout_mode = 2
 
-[node name="StageView" parent="GameplayView/VBox" instance=ExtResource("5_stage")]
+[node name="StageView" parent="GameplayView/VBox" instance=ExtResource("6_stage")]
 layout_mode = 2
 
-[node name="ScenarioPanel" parent="GameplayView/VBox" instance=ExtResource("6_scenario")]
+[node name="ScenarioPanel" parent="GameplayView/VBox" instance=ExtResource("7_scenario")]
 layout_mode = 2
 
 [node name="Modals" type="Control" parent="."]
@@ -74,18 +95,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MathModal" parent="Modals" instance=ExtResource("7_math")]
+[node name="MathModal" parent="Modals" instance=ExtResource("8_math")]
 visible = false
 layout_mode = 1
 
-[node name="EventModal" parent="Modals" instance=ExtResource("8_event")]
+[node name="EventModal" parent="Modals" instance=ExtResource("9_event")]
 visible = false
 layout_mode = 1
 
-[node name="SummaryModal" parent="Modals" instance=ExtResource("9_summary")]
+[node name="SummaryModal" parent="Modals" instance=ExtResource("10_summary")]
 visible = false
 layout_mode = 1
 
-[node name="EndGameModal" parent="Modals" instance=ExtResource("10_end")]
+[node name="EndGameModal" parent="Modals" instance=ExtResource("11_end")]
 visible = false
 layout_mode = 1

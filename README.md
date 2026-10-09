@@ -27,7 +27,7 @@ Players act as treasurer and advisor for an afterschool math club, navigating fi
 ### Phase 2: UI Layout & State Architecture ✅
 - Complete modular Godot UI node hierarchy with rounded modern cards, high contrast typography, and responsive layouts:
   - **Main Game Coordinator** ([`scenes/main.tscn`](res://scenes/main.tscn) & [`game_controller.gd`](res://scripts/ui/game_controller.gd)): Coordinates state transitions, keyboard shortcuts (`1`, `2`, `3`, `Space`, `Enter`), and modal management.
-  - **HUD Dashboard** ([`scenes/ui/hud.tscn`](res://scenes/ui/hud.tscn)): Live budget counter, week indicator, dynamic burn-rate allowance and danger warnings, and 3 color-thresholded stakeholder morale progress bars with smooth animated tweens.
+  - **HUD Dashboard** ([`scenes/ui/hud.tscn`](res://scenes/ui/hud.tscn)): Live budget counter, week indicator, dynamic burn-rate allowance, and 3 color-thresholded stakeholder morale progress bars with smooth animated tweens.
   - **Stage View** ([`scenes/ui/stage_view.tscn`](res://scenes/ui/stage_view.tscn)): Classroom chalkboard environment with reactive character cards (Jordan the student rep, Coach Taylor, and Booster Parent Mrs. Chen) with speaking highlights and emotional mood states (Thrilled, Satisfied, Stressed, Crisis).
   - **Scenario Panel** ([`scenes/ui/scenario_panel.tscn`](res://scenes/ui/scenario_panel.tscn)): Narrative description cards and 3 styled action buttons displaying cost, revenue, morale tags, and math badges.
   - **Modals:**
@@ -38,6 +38,19 @@ Players act as treasurer and advisor for an afterschool math club, navigating fi
   - **Title & Setup Screens:**
     - [`TitleScreen`](res://scenes/ui/title_screen.tscn): Objective overview and prompt to start.
     - [`SetupScreen`](res://scenes/ui/setup_screen.tscn): Name selection presets, starting budget slider ($100–$1000), student roster slider (4–36), and season length slider (4–30).
+
+### Phase 3: Modern Art & Audio Assets ✅
+- **High-Resolution Character Portraits (`assets/images/characters/`):**
+  - **Jordan (Student Rep):** Illustrated portrait bust with red pi baseball cap, curls, and yellow math club hoodie.
+  - **Coach Taylor (Head Coach):** Illustrated portrait bust with gold glasses, neat fade, and royal blue polo.
+  - **Mrs. Chen (Booster Parent):** Illustrated portrait bust with sleek bob, purple cardigan, and warm coffee mug.
+- **Classroom Environment Background (`assets/images/backgrounds/`):**
+  - Warm sunlit classroom interior with chalk formulas, math diagrams, and banners.
+- **Complete Audio System (`scripts/audio/audio_manager.gd`):**
+  - Global autoload `AudioManager` with polyphonic sound effect playback and volume control.
+  - Dedicated sound effects: `select.wav` (UI tick), `confirm.wav` (button confirm), `cash.wav` (metallic coin clink), `alarm.wav` (danger buzzer), `correct.wav` (rising victory arpeggio), `game_over.wav` (melancholic cadence), `victory.wav` (brass fanfare).
+  - Looping background theme music: `theme_music.wav` (playful, cozy 16-bar math club theme).
+  - In-game HUD mute button toggle ("🔊" / "🔇") and global keyboard shortcut (`M`).
 
 ---
 
@@ -76,14 +89,23 @@ Both the model logic and UI state transitions are backed by headless automated t
 
 ```
 club-budget-the-game-godot/
+├── assets/
+│   ├── audio/
+│   │   ├── music/
+│   │   │   └── theme_music.wav   # Cozy looping math club theme
+│   │   └── sfx/                  # Modern sound effects (select, confirm, cash, etc.)
+│   └── images/
+│       ├── backgrounds/
+│       │   └── classroom_bg.jpg  # Sunlit math club classroom backdrop
+│       └── characters/           # Illustrated portraits (Student, Coach, Parent)
 ├── data/
 │   ├── scenarios.json            # Dynamic scenario cards & math challenges
 │   └── events.json               # Unexpected mid-season events
 ├── scenes/
 │   ├── main.tscn                 # Primary game viewport & state coordinator
 │   └── ui/
-│       ├── hud.tscn              # Top bar, budget & stakeholder morale gauges
-│       ├── stage_view.tscn       # Classroom vignette & reactive character cards
+│       ├── hud.tscn              # Top bar, budget, mute toggle & morale gauges
+│       ├── stage_view.tscn       # Classroom vignette & illustrated character cards
 │       ├── scenario_panel.tscn   # Weekly scenario narrative & choice cards
 │       ├── title_screen.tscn     # Title screen & rules overview
 │       ├── setup_screen.tscn     # Club configuration sliders & presets
@@ -93,6 +115,9 @@ club-budget-the-game-godot/
 │           ├── summary_modal.tscn# Weekly ledger recap
 │           └── end_game_modal.tscn# Victory / Game Over summary
 ├── scripts/
+│   ├── audio/
+│   │   ├── audio_manager.gd      # Global audio autoload singleton
+│   │   └── generate_audio.py     # Procedural audio generator script
 │   ├── model/                    # Simulation logic & data models
 │   └── ui/                       # UI controllers & modal logic
 ├── tests/
@@ -106,7 +131,6 @@ club-budget-the-game-godot/
 
 ---
 
-## ⏭️ Next Step: Phase 3 (Art & Audio Assets)
-- Custom illustrated portraits / sprites for Jordan, Coach Taylor, and Mrs. Chen.
-- Modern high-definition sound effects (clicks, coins/cash, alert buzzer, fanfare).
-- Cozy background music track (OGG loop).
+## ⏭️ Next Step: Phase 4 & Phase 5
+- **Phase 4 (Juice & Polish):** Particle effects (confetti / chalk dust), animated budget counters, floating stat deltas (`+$15.00`, `+5% Morale`).
+- **Phase 5 (Web Export & itch.io):** Single-threaded WebAssembly export preset configuration, HTML5 shell template, and deployment package for itch.io.

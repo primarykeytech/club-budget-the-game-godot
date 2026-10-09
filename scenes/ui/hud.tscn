@@ -26,6 +26,7 @@ theme_override_constants/separation = 5
 
 [node name="TopRow" type="HBoxContainer" parent="VBox"]
 layout_mode = 2
+theme_override_constants/separation = 12
 
 [node name="ClubNameLabel" type="Label" parent="VBox/TopRow"]
 layout_mode = 2
@@ -52,6 +53,13 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0627451, 0.72549, 0.505882, 1)
 theme_override_font_sizes/font_size = 20
 text = "$300.00"
+
+[node name="MuteButton" type="Button" parent="VBox/TopRow"]
+custom_minimum_size = Vector2(36, 0)
+layout_mode = 2
+tooltip_text = "Toggle Audio Mute (Hotkey: M)"
+text = "🔊"
+flat = true
 
 [node name="BurnRateLabel" type="Label" parent="VBox"]
 layout_mode = 2

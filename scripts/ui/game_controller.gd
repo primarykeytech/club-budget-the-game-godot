@@ -20,7 +20,6 @@ var current_scenario: Scenario = null
 var pending_choice: Choice = null
 
 func _ready() -> void:
-
 	title_screen.start_pressed.connect(_on_title_start)
 	setup_screen.setup_confirmed.connect(_on_setup_confirmed)
 	setup_screen.back_pressed.connect(_on_setup_back)
@@ -33,6 +32,10 @@ func _ready() -> void:
 
 	_show_title()
 
+func _play_sfx(sound_name: String) -> void:
+	if has_node("/root/AudioManager"):
+		get_node("/root/AudioManager").play_sfx(sound_name)
+
 func _show_title() -> void:
 	title_screen.visible = true
 	setup_screen.visible = false
@@ -40,13 +43,16 @@ func _show_title() -> void:
 	_hide_all_modals()
 
 func _on_title_start() -> void:
+	_play_sfx("confirm")
 	title_screen.visible = false
 	setup_screen.visible = true
 
 func _on_setup_back() -> void:
+	_play_sfx("select")
 	_show_title()
 
 func _on_setup_confirmed(club_name: String, budget: float, students: int, weeks: int) -> void:
+	_play_sfx("confirm")
 	state = ClubState.new(club_name, budget, students, weeks, 72.0)
 	scenario_mgr.start_season(weeks, true)
 
@@ -63,12 +69,14 @@ func _start_current_week() -> void:
 	# Check for random unexpected event (weeks 3, 6, 9...)
 	var event: GameEvent = scenario_mgr.get_event_if_triggered(state.current_week, state)
 	if event != null:
+		_play_sfx("alarm")
 		var outcome := state.apply_event(event)
 		hud.update_hud(state)
 		stage_view.update_stage("Coach", state.happiness)
 
 		var loss_check := state.check_immediate_loss()
 		if loss_check["lost"]:
+			_play_sfx("game_over")
 			end_game_modal.open_game_over(loss_check["reason"], state)
 			return
 
@@ -77,6 +85,7 @@ func _start_current_week() -> void:
 		_load_scenario()
 
 func _on_event_dismissed() -> void:
+	_play_sfx("select")
 	_load_scenario()
 
 func _load_scenario() -> void:
@@ -89,6 +98,7 @@ func _on_choice_selected(index: int) -> void:
 	if current_scenario == null or index >= current_scenario.choices.size():
 		return
 
+	_play_sfx("select")
 	pending_choice = current_scenario.choices[index]
 
 	if pending_choice.math_challenge != null:
@@ -97,6 +107,10 @@ func _on_choice_selected(index: int) -> void:
 		_resolve_choice(null)
 
 func _on_math_resolved(was_correct: bool) -> void:
+	if was_correct:
+		_play_sfx("correct")
+	else:
+		_play_sfx("alarm")
 	_resolve_choice(was_correct)
 
 func _resolve_choice(math_correct: Variant) -> void:
@@ -104,36 +118,47 @@ func _resolve_choice(math_correct: Variant) -> void:
 		return
 
 	var outcome := state.apply_choice(pending_choice, math_correct)
+	var net_cash: float = float(outcome["net_cash"])
+	if net_cash > 0.0:
+		_play_sfx("cash")
+	elif net_cash < 0.0:
+		_play_sfx("select")
+
 	hud.update_hud(state)
 	stage_view.update_stage(pending_choice.reaction, state.happiness)
 
 	var loss_check := state.check_immediate_loss()
 	if loss_check["lost"]:
+		_play_sfx("game_over")
 		end_game_modal.open_game_over(loss_check["reason"], state)
 		return
 
 	summary_modal.open_summary(
 		pending_choice.reaction,
-		float(outcome["net_cash"]),
+		net_cash,
 		outcome["effects"],
 		state.budget
 	)
 
 func _on_summary_dismissed() -> void:
+	_play_sfx("select")
 	state.advance_week()
 
 	# Check victory or season completion
 	if state.is_season_finished():
 		var vic_check := state.check_victory()
 		if vic_check["won"]:
+			_play_sfx("victory")
 			end_game_modal.open_victory(vic_check["message"], state)
 		else:
+			_play_sfx("game_over")
 			end_game_modal.open_game_over(vic_check["message"], state)
 		return
 
 	_start_current_week()
 
 func _on_restart_requested() -> void:
+	_play_sfx("confirm")
 	_hide_all_modals()
 	gameplay_view.visible = false
 	setup_screen.visible = true

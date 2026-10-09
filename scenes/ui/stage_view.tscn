@@ -1,29 +1,32 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmh5j1h6r2w4q"]
+[gd_scene load_steps=8 format=3 uid="uid://dmh5j1h6r2w4q"]
 
 [ext_resource type="Script" path="res://scripts/ui/stage_view.gd" id="1_stage"]
+[ext_resource type="Texture2D" path="res://assets/images/characters/student_portrait.jpg" id="2_student"]
+[ext_resource type="Texture2D" path="res://assets/images/characters/coach_portrait.jpg" id="3_coach"]
+[ext_resource type="Texture2D" path="res://assets/images/characters/parent_portrait.jpg" id="4_parent"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stage_bg"]
-content_margin_left = 20.0
-content_margin_top = 10.0
-content_margin_right = 20.0
-content_margin_bottom = 10.0
-bg_color = Color(0.0823529, 0.188235, 0.133333, 0.95)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+content_margin_left = 16.0
+content_margin_top = 8.0
+content_margin_right = 16.0
+content_margin_bottom = 8.0
+bg_color = Color(0.0823529, 0.188235, 0.133333, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color(0.439216, 0.286275, 0.14902, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_char_card"]
 content_margin_left = 12.0
 content_margin_top = 8.0
 content_margin_right = 12.0
 content_margin_bottom = 8.0
-bg_color = Color(0.0627451, 0.113725, 0.180392, 0.85)
+bg_color = Color(0.0627451, 0.113725, 0.180392, 0.9)
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
@@ -35,99 +38,129 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="StageView" type="PanelContainer"]
-custom_minimum_size = Vector2(0, 115)
+custom_minimum_size = Vector2(0, 120)
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 115.0
+offset_bottom = 120.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_stage_bg")
 script = ExtResource("1_stage")
 
 [node name="HBox" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 16
 alignment = 1
 
 [node name="StudentCard" type="PanelContainer" parent="HBox"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_char_card")
 
-[node name="VBox" type="VBoxContainer" parent="HBox/StudentCard"]
+[node name="Content" type="HBoxContainer" parent="HBox/StudentCard"]
 layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Portrait" type="TextureRect" parent="HBox/StudentCard/Content"]
+custom_minimum_size = Vector2(58, 58)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_student")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="HBox/StudentCard/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
 alignment = 1
 
-[node name="AvatarLabel" type="Label" parent="HBox/StudentCard/VBox"]
+[node name="AvatarLabel" type="Label" parent="HBox/StudentCard/Content/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "🧢"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+text = "😃 Thrilled"
 
-[node name="NameLabel" type="Label" parent="HBox/StudentCard/VBox"]
+[node name="NameLabel" type="Label" parent="HBox/StudentCard/Content/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.960784, 0.843137, 0.423529, 1)
 theme_override_font_sizes/font_size = 13
 text = "Jordan (Student)"
-horizontal_alignment = 1
 
-[node name="MoodLabel" type="Label" parent="HBox/StudentCard/VBox"]
+[node name="MoodLabel" type="Label" parent="HBox/StudentCard/Content/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "SATISFIED"
-horizontal_alignment = 1
 
 [node name="CoachCard" type="PanelContainer" parent="HBox"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_char_card")
 
-[node name="VBox" type="VBoxContainer" parent="HBox/CoachCard"]
+[node name="Content" type="HBoxContainer" parent="HBox/CoachCard"]
 layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Portrait" type="TextureRect" parent="HBox/CoachCard/Content"]
+custom_minimum_size = Vector2(58, 58)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_coach")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="HBox/CoachCard/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
 alignment = 1
 
-[node name="AvatarLabel" type="Label" parent="HBox/CoachCard/VBox"]
+[node name="AvatarLabel" type="Label" parent="HBox/CoachCard/Content/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "👓"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+text = "😄 Confident"
 
-[node name="NameLabel" type="Label" parent="HBox/CoachCard/VBox"]
+[node name="NameLabel" type="Label" parent="HBox/CoachCard/Content/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25098, 0.74902, 0.94902, 1)
 theme_override_font_sizes/font_size = 13
 text = "Coach Taylor"
-horizontal_alignment = 1
 
-[node name="MoodLabel" type="Label" parent="HBox/CoachCard/VBox"]
+[node name="MoodLabel" type="Label" parent="HBox/CoachCard/Content/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "SATISFIED"
-horizontal_alignment = 1
 
 [node name="ParentCard" type="PanelContainer" parent="HBox"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_char_card")
 
-[node name="VBox" type="VBoxContainer" parent="HBox/ParentCard"]
+[node name="Content" type="HBoxContainer" parent="HBox/ParentCard"]
 layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Portrait" type="TextureRect" parent="HBox/ParentCard/Content"]
+custom_minimum_size = Vector2(58, 58)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_parent")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBox" type="VBoxContainer" parent="HBox/ParentCard/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
 alignment = 1
 
-[node name="AvatarLabel" type="Label" parent="HBox/ParentCard/VBox"]
+[node name="AvatarLabel" type="Label" parent="HBox/ParentCard/Content/VBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-text = "☕"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+text = "😊 Supportive"
 
-[node name="NameLabel" type="Label" parent="HBox/ParentCard/VBox"]
+[node name="NameLabel" type="Label" parent="HBox/ParentCard/Content/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85098, 0.580392, 0.94902, 1)
 theme_override_font_sizes/font_size = 13
 text = "Mrs. Chen (Booster)"
-horizontal_alignment = 1
 
-[node name="MoodLabel" type="Label" parent="HBox/ParentCard/VBox"]
+[node name="MoodLabel" type="Label" parent="HBox/ParentCard/Content/VBox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "SATISFIED"
-horizontal_alignment = 1

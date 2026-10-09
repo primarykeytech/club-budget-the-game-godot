@@ -4,6 +4,7 @@ extends PanelContainer
 @onready var club_name_label: Label = $VBox/TopRow/ClubNameLabel
 @onready var week_label: Label = $VBox/TopRow/WeekLabel
 @onready var budget_label: Label = $VBox/TopRow/BudgetLabel
+@onready var mute_btn: Button = $VBox/TopRow/MuteButton
 @onready var burn_rate_label: Label = $VBox/BurnRateLabel
 
 @onready var student_bar: ProgressBar = $VBox/MoraleRow/StudentCol/StudentBar
@@ -14,6 +15,24 @@ extends PanelContainer
 
 @onready var parent_bar: ProgressBar = $VBox/MoraleRow/ParentCol/ParentBar
 @onready var parent_pct_label: Label = $VBox/MoraleRow/ParentCol/Header/ParentPctLabel
+
+func _ready() -> void:
+	mute_btn.pressed.connect(_on_mute_pressed)
+	if has_node("/root/AudioManager"):
+		var audio = get_node("/root/AudioManager")
+		audio.mute_toggled.connect(_on_mute_state_changed)
+		_update_mute_icon(audio.is_muted)
+
+func _on_mute_pressed() -> void:
+	if has_node("/root/AudioManager"):
+		var audio = get_node("/root/AudioManager")
+		audio.toggle_mute()
+
+func _on_mute_state_changed(is_muted: bool) -> void:
+	_update_mute_icon(is_muted)
+
+func _update_mute_icon(is_muted: bool) -> void:
+	mute_btn.text = "🔇" if is_muted else "🔊"
 
 func update_hud(state: ClubState, animated: bool = true) -> void:
 	club_name_label.text = state.club_name.to_upper()
