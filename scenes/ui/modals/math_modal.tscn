@@ -72,6 +72,32 @@ theme_override_colors/font_color = Color(0.22, 0.74, 0.98, 1)
 theme_override_font_sizes/font_size = 20
 text = "Math Challenge!"
 
+[node name="TimerBox" type="HBoxContainer" parent="Card/VBox"]
+visible = false
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 10
+
+[node name="TimerIcon" type="Label" parent="Card/VBox/TimerBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "⏱️"
+
+[node name="TimerBar" type="ProgressBar" parent="Card/VBox/TimerBox"]
+custom_minimum_size = Vector2(160, 14)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 60.0
+value = 60.0
+show_percentage = false
+
+[node name="TimerLabel" type="Label" parent="Card/VBox/TimerBox"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.960784, 0.768627, 0.298039, 1)
+theme_override_font_sizes/font_size = 14
+text = "60s"
+
 [node name="PromptLabel" type="Label" parent="Card/VBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.95, 0.95, 1)

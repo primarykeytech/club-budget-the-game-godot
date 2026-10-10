@@ -37,11 +37,42 @@ theme_override_constants/separation = 14
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="TitleLabel" type="Label" parent="VBox/Header"]
+[node name="HeaderTop" type="HBoxContainer" parent="VBox/Header"]
 layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="VBox/Header/HeaderTop"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0.960784, 0.768627, 0.298039, 1)
 theme_override_font_sizes/font_size = 20
 text = "Scenario Title"
+
+[node name="TimerBox" type="HBoxContainer" parent="VBox/Header/HeaderTop"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="TimerIcon" type="Label" parent="VBox/Header/HeaderTop/TimerBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "⏱️"
+
+[node name="TimerBar" type="ProgressBar" parent="VBox/Header/HeaderTop/TimerBox"]
+custom_minimum_size = Vector2(90, 14)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 60.0
+value = 60.0
+show_percentage = false
+
+[node name="TimerLabel" type="Label" parent="VBox/Header/HeaderTop/TimerBox"]
+custom_minimum_size = Vector2(38, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.960784, 0.768627, 0.298039, 1)
+theme_override_font_sizes/font_size = 14
+text = "60s"
+horizontal_alignment = 2
 
 [node name="SpeakerLabel" type="Label" parent="VBox/Header"]
 layout_mode = 2

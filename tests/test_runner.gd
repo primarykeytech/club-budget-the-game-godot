@@ -19,6 +19,9 @@ func _init() -> void:
 	run_test("test_end_season_missed_target", test_end_season_missed_target)
 	run_test("test_scenario_manager_loading", test_scenario_manager_loading)
 	run_test("test_start_season_shuffled_deck", test_start_season_shuffled_deck)
+	run_test("test_season_deck_zero_repeats_up_to_max", test_season_deck_zero_repeats_up_to_max)
+	run_test("test_events_deck_zero_repeats", test_events_deck_zero_repeats)
+	run_test("test_all_28_scenarios_math_formulas_valid", test_all_28_scenarios_math_formulas_valid)
 	run_test("test_text_formatting", test_text_formatting)
 
 	print("========================================")
@@ -277,6 +280,81 @@ func test_start_season_shuffled_deck() -> String:
 		unique_set[id] = true
 	if unique_set.size() != subsequent_ids.size():
 		return "Duplicate scenarios found in single cycle"
+
+	return ""
+
+func test_season_deck_zero_repeats_up_to_max() -> String:
+	var sm := ScenarioManager.new("res://data/scenarios.json", "res://data/events.json")
+	var total_unique := sm.scenarios_raw.size()
+	if total_unique < 28:
+		return "Expected at least 28 unique scenarios in JSON, found %d" % total_unique
+
+	sm.start_season(total_unique, true)
+	if sm.season_deck.size() != total_unique:
+		return "Expected season deck size %d, got %d" % [total_unique, sm.season_deck.size()]
+
+	var seen_ids: Dictionary = {}
+	for i in range(sm.season_deck.size()):
+		var id: String = sm.season_deck[i]["id"]
+		if seen_ids.has(id):
+			return "Scenario ID '%s' repeated at week index %d (previously seen at week %d)" % [id, i + 1, seen_ids[id] + 1]
+		seen_ids[id] = i
+
+	return ""
+
+func test_events_deck_zero_repeats() -> String:
+	var sm := ScenarioManager.new("res://data/scenarios.json", "res://data/events.json")
+	var state := ClubState.new("Alpha Math Club", 250.0, 16, 28, 75.0)
+	sm.start_season(28, true)
+
+	var triggered_event_ids: Array[String] = []
+	for week in range(1, 29):
+		var evt := sm.get_event_if_triggered(week, state)
+		if evt != null:
+			if triggered_event_ids.has(evt.id):
+				return "Event ID '%s' repeated unexpectedly at week %d" % [evt.id, week]
+			triggered_event_ids.append(evt.id)
+
+	if triggered_event_ids.size() < 8:
+		return "Expected at least 8 unique events across 28 weeks, triggered %d" % triggered_event_ids.size()
+
+	return ""
+
+func test_all_28_scenarios_math_formulas_valid() -> String:
+	var sm := ScenarioManager.new("res://data/scenarios.json", "res://data/events.json")
+	if sm.scenarios_raw.size() < 28:
+		return "Expected at least 28 scenarios, found %d" % sm.scenarios_raw.size()
+
+	var test_roster_sizes := [10, 16, 24]
+	for students in test_roster_sizes:
+		var state := ClubState.new("Test Club", 500.0, students, 28, 75.0)
+		for s_idx in range(sm.scenarios_raw.size()):
+			var raw_dict: Dictionary = sm.scenarios_raw[s_idx]
+			for c_raw in raw_dict.get("choices", []):
+				var cost_val := state.evaluate_formula(c_raw.get("cost_formula", "0"))
+				if cost_val < 0.0 and not c_raw.has("revenue_formula"):
+					return "Cost formula evaluated negative in scenario %s" % raw_dict["id"]
+
+				if c_raw.has("math_challenge") and c_raw["math_challenge"] != null:
+					var mc: Dictionary = c_raw["math_challenge"]
+					var ans_val := state.evaluate_formula(mc.get("answer_formula", "0"))
+					var prompt_str := state.format_text(mc.get("prompt", ""))
+					if prompt_str.is_empty():
+						return "Empty math challenge prompt in scenario %s" % raw_dict["id"]
+					if ans_val < 0.0:
+						return "Math challenge answer is negative in scenario %s" % raw_dict["id"]
+
+					var opts := sm._generate_math_options(ans_val)
+					if opts.size() != 4:
+						return "Expected 4 math options in scenario %s, got %d" % [raw_dict["id"], opts.size()]
+
+					var found := false
+					for o in opts:
+						if is_equal_approx(o, ans_val):
+							found = true
+							break
+					if not found:
+						return "Correct answer %.2f missing from generated options in scenario %s" % [ans_val, raw_dict["id"]]
 
 	return ""
 

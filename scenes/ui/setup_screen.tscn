@@ -139,13 +139,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 min_value = 4.0
-max_value = 30.0
+max_value = 28.0
 step = 2.0
 value = 12.0
 
 [node name="WeeksValLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
 layout_mode = 2
 text = "12 Weeks"
+
+[node name="TimerLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+text = "Time Limit:"
+
+[node name="TimerOption" type="OptionButton" parent="CenterContainer/Card/VBox/FormGrid"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="TimerValLabel" type="Label" parent="CenterContainer/Card/VBox/FormGrid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.65098, 0.74902, 0.878431, 1)
+theme_override_font_sizes/font_size = 12
+text = "Per question & math challenge"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/Card/VBox"]
 layout_mode = 2

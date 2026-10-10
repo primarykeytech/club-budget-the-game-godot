@@ -429,5 +429,1171 @@
         }
       }
     ]
+  },
+  {
+    "id": "graph_paper_bulk",
+    "title": "Coordinate Geometry & Compass Kits",
+    "speaker": "Coach",
+    "description": "Our upcoming coordinate geometry tournament module requires precise millimeter grid notebooks and compass-protractor sets for everyone.",
+    "choices": [
+      {
+        "id": "deluxe_kit",
+        "text": "1. Deluxe Compass & Grid Notebook Bundle ($4.50 ea, 15% bulk discount)",
+        "cost_formula": "(4.50 * students) * 0.85",
+        "effects": {
+          "students": 14,
+          "coaches": 8,
+          "parents": 2
+        },
+        "reaction": "The precision brass compasses and crisp coordinate notebooks make drawing parabolas a breeze!",
+        "math_challenge": {
+          "type": "percentage_discount",
+          "prompt": "Bundles retail at $4.50 each for {students} students. With a 15% bulk discount (paying 85%), what is the discounted invoice?",
+          "answer_formula": "(4.50 * students) * 0.85",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 4.5
+        }
+      },
+      {
+        "id": "printable_grids",
+        "text": "2. Printable Grid Sheets & Economy Protractors ($1.20 ea + $6.50 storage bins)",
+        "cost_formula": "(1.20 * students) + 6.50",
+        "effects": {
+          "students": 4,
+          "coaches": 2,
+          "parents": 8
+        },
+        "reaction": "A smart budget purchase. Protractors are cheap plastic, but neatly organized in bins.",
+        "math_challenge": {
+          "type": "multi_step",
+          "prompt": "Plastic protractors cost $1.20 each for {students} students, plus $6.50 for classroom bins. What is the total expense?",
+          "answer_formula": "(1.20 * students) + 6.50",
+          "unit": "$",
+          "bonus_happiness": 5,
+          "penalty_cost": 3.0
+        }
+      },
+      {
+        "id": "freehand_drawing",
+        "text": "3. Sketch Coordinate Grids Freehand on Scrap Paper ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -12,
+          "coaches": -8,
+          "parents": -4
+        },
+        "reaction": "Lopsided circles and crooked axes led to messy graphs and frustrated students.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "pi_day_pie_sale",
+    "title": "Fundraiser: Pi Day (3/14) Pie Auction",
+    "speaker": "Parent",
+    "description": "Ms. Chaidee and parent volunteers offer to bake artisan fruit and cream pies for an after-school Pi Day auction!",
+    "choices": [
+      {
+        "id": "artisan_pies",
+        "text": "1. Deluxe Whole Pie Booth ($18.00 baking setup, sell {students_x2} pies at $6.50 ea)",
+        "cost_formula": "18.00",
+        "revenue_formula": "6.50 * students * 2",
+        "effects": {
+          "students": 12,
+          "coaches": 6,
+          "parents": 10
+        },
+        "reaction": "The whole school cafeteria smelled of cinnamon! The auction generated huge fanfare.",
+        "math_challenge": {
+          "type": "profit_margin",
+          "prompt": "Baking ingredients cost $18.00. We sell {students_x2} whole pies at $6.50 each. What is our Net Profit?",
+          "answer_formula": "(6.50 * students * 2) - 18.00",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 5.0
+        }
+      },
+      {
+        "id": "mini_cupcake_slices",
+        "text": "2. Mini Cupcake Slices ($8.00 setup, sell {students_x2} slices at $2.25 ea)",
+        "cost_formula": "8.00",
+        "revenue_formula": "2.25 * students * 2",
+        "effects": {
+          "students": 6,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Quick and painless sales at parent pick-up time. Raised modest funding.",
+        "math_challenge": {
+          "type": "profit_margin",
+          "prompt": "Supplies cost $8.00. We sell {students_x2} mini slices at $2.25 each. What is our Net Profit?",
+          "answer_formula": "(2.25 * students * 2) - 8.00",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.5
+        }
+      },
+      {
+        "id": "skip_pie_sale",
+        "text": "3. Recite Digits of Pi, No Baked Goods ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -6,
+          "coaches": 2,
+          "parents": -6
+        },
+        "reaction": "Impressive memory recitations, but the treasury missed a lucrative funding opportunity.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "math_escape_room",
+    "title": "Team Building: The Cryptography Escape Room",
+    "speaker": "Student",
+    "description": "Piper requests a team-building weekend visit to 'The Cipher Dungeon' escape room to practice deductive reasoning under pressure!",
+    "choices": [
+      {
+        "id": "cipher_dungeon_trip",
+        "text": "1. Group Booking ($12.50 / student, with $20.00 coupon discount)",
+        "cost_formula": "(12.50 * students) - 20.00",
+        "effects": {
+          "students": 18,
+          "coaches": 8,
+          "parents": -6
+        },
+        "reaction": "The team solved the modular arithmetic lock with 12 seconds remaining! Team camaraderie is through the roof.",
+        "math_challenge": {
+          "type": "multi_step",
+          "prompt": "Tickets cost $12.50 per student for {students} students, minus a $20.00 school group coupon. What is total cost?",
+          "answer_formula": "(12.50 * students) - 20.00",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 8.0
+        }
+      },
+      {
+        "id": "diy_escape_boxes",
+        "text": "2. DIY Classroom Logic Puzzle Boxes ($2.80 / student)",
+        "cost_formula": "2.80 * students",
+        "effects": {
+          "students": 8,
+          "coaches": 4,
+          "parents": 8
+        },
+        "reaction": "Piper and Coach John set up combination locks in the homeroom. Great puzzle-solving fun at a fraction of the cost.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Hardware and locks cost $2.80 per student for {students} students. What is the total expense?",
+          "answer_formula": "2.80 * students",
+          "unit": "$",
+          "bonus_happiness": 5,
+          "penalty_cost": 3.0
+        }
+      },
+      {
+        "id": "printed_cipher_sheets",
+        "text": "3. Printed Cryptogram Worksheets in Class ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -8,
+          "coaches": -2,
+          "parents": 2
+        },
+        "reaction": "Students worked silently at desks. Fun for some, but lacked the excitement of a real mystery.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "calculator_rental",
+    "title": "Equipment Upgrade: Graphing Calculators",
+    "speaker": "Coach",
+    "description": "Coach John notes that tournament speed rounds now permit advanced two-line multiline calculators for matrix and statistics problems.",
+    "choices": [
+      {
+        "id": "rent_graphing_calculators",
+        "text": "1. Rent District Graphing Units ($3.75 / student + $14.50 calibration fee)",
+        "cost_formula": "(3.75 * students) + 14.50",
+        "effects": {
+          "students": 15,
+          "coaches": 12,
+          "parents": -4
+        },
+        "reaction": "High-powered machines! Plotting regression lines took seconds instead of minutes.",
+        "math_challenge": {
+          "type": "multi_step",
+          "prompt": "Calculators rent for $3.75 per student for {students} students, plus a flat $14.50 calibration inspection fee. What is the total invoice?",
+          "answer_formula": "(3.75 * students) + 14.50",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 5.0
+        }
+      },
+      {
+        "id": "refurbished_scientific",
+        "text": "2. Refurbished Two-Line Scientific Models ($2.10 / student)",
+        "cost_formula": "2.10 * students",
+        "effects": {
+          "students": 6,
+          "coaches": 6,
+          "parents": 6
+        },
+        "reaction": "Solid dependable scientific calculators. Reliable calculations without blowing our reserves.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Refurbished units cost $2.10 each for {students} students. What is our total expenditure?",
+          "answer_formula": "2.10 * students",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 3.0
+        }
+      },
+      {
+        "id": "borrow_phones",
+        "text": "3. Use Free Phone Emulators on Borrowed Tablets ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -10,
+          "coaches": -10,
+          "parents": -6
+        },
+        "reaction": "Device lockouts and notification pings caused chaos. Official tournaments won't allow phones anyway.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "rubiks_cube_tournament",
+    "title": "Contest: Speedcubing & Permutation Derby",
+    "speaker": "Student",
+    "description": "Piper and the students want to host an invitational speedcubing relay to teach group theory and algorithm memorization!",
+    "choices": [
+      {
+        "id": "pro_cube_pack",
+        "text": "1. Competition Speedcubes & Timer Mats ($45.00 package, 20% educator discount)",
+        "cost_formula": "45.00 * 0.80",
+        "effects": {
+          "students": 16,
+          "coaches": 8,
+          "parents": 4
+        },
+        "reaction": "Smooth magnetic rotation and touch mats! Kids were setting personal records all afternoon.",
+        "math_challenge": {
+          "type": "percentage_discount",
+          "prompt": "The pro tournament package is $45.00. With a 20% educator discount (paying 80%), what does the club pay?",
+          "answer_formula": "45.00 * 0.80",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 4.0
+        }
+      },
+      {
+        "id": "economy_cubes",
+        "text": "2. Bulk Economy 6-Pack Cubes ($18.00 flat)",
+        "cost_formula": "18.00",
+        "effects": {
+          "students": 6,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "They click a bit stiffly, but students traded algorithms eagerly.",
+        "math_challenge": {
+          "type": "unit_rate",
+          "prompt": "A bulk carton of 6 speed cubes costs $18.00. What is the unit cost per cube?",
+          "answer_formula": "18.00 / 6.0",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.0
+        }
+      },
+      {
+        "id": "bring_home_cubes",
+        "text": "3. BYOC: Bring Your Own Cube from Home ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -8,
+          "coaches": -4,
+          "parents": 0
+        },
+        "reaction": "Half the cubes had missing stickers or jammed mechanisms, creating heated disputes.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "team_banner_design",
+    "title": "School Spirit: Mathlete Showcase Banner",
+    "speaker": "Parent",
+    "description": "Ms. Chaidee proposes ordering a weather-resistant vinyl banner for the cafeteria hall displaying the math club logo.",
+    "choices": [
+      {
+        "id": "vinyl_banner",
+        "text": "1. 4 ft by 6 ft Heavy-Duty Vinyl Banner ($3.20 per square foot)",
+        "cost_formula": "24.0 * 3.20",
+        "effects": {
+          "students": 12,
+          "coaches": 8,
+          "parents": 12
+        },
+        "reaction": "Stunning glossy banner with the golden ratio spiral! It proudly dominates the hallway.",
+        "math_challenge": {
+          "type": "geometry_area",
+          "prompt": "The banner measures 4 feet wide by 6 feet long (24 sq ft). At $3.20 per square foot, what is the total cost?",
+          "answer_formula": "24.0 * 3.20",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 6.0
+        }
+      },
+      {
+        "id": "poster_board_craft",
+        "text": "2. Poster Board & Border Ribbon Craft Kit ($9.50 supplies)",
+        "cost_formula": "9.50",
+        "effects": {
+          "students": 6,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Handmade with colorful glitter and markers. Charming and economical.",
+        "math_challenge": {
+          "type": "addition_decimals",
+          "prompt": "Poster cardstock is $3.50, metallic markers cost $4.25, and border ribbon is $1.75. What is the combined total?",
+          "answer_formula": "3.50 + 4.25 + 1.75",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.0
+        }
+      },
+      {
+        "id": "chalkboard_banner",
+        "text": "3. Draw Banner in Chalk on Board ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -6,
+          "coaches": -2,
+          "parents": -4
+        },
+        "reaction": "Custodial staff accidentally erased it the next morning during hallway cleaning.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "origami_workshop",
+    "title": "Hands-on Lab: Modular Polyhedral Origami",
+    "speaker": "Coach",
+    "description": "Coach John wants to teach 3D spatial geometry and Euler's formula (V - E + F = 2) by building icosahedrons out of modular folded paper units.",
+    "choices": [
+      {
+        "id": "specialty_origami_paper",
+        "text": "1. Duo-Colored Origami Squares Pack ($1.60 / student)",
+        "cost_formula": "1.60 * students",
+        "effects": {
+          "students": 14,
+          "coaches": 10,
+          "parents": 6
+        },
+        "reaction": "Geometric masterpieces! The colorful 3D interlocking shapes look incredible on classroom desks.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Each student uses 8 sheets of duo-color foil paper at $0.20 per sheet ($1.60 per student). For {students} students, what is the cost?",
+          "answer_formula": "1.60 * students",
+          "unit": "$",
+          "bonus_happiness": 5,
+          "penalty_cost": 3.0
+        }
+      },
+      {
+        "id": "printer_paper_cutting",
+        "text": "2. Cut-Down Colored Copy Paper ($0.45 / student)",
+        "cost_formula": "0.45 * students",
+        "effects": {
+          "students": 4,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Took extra time with scissors to square the edges, but the geometric models held together well.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Colored sheets cost $0.45 per student for {students} students. What is the total cost?",
+          "answer_formula": "0.45 * students",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.0
+        }
+      },
+      {
+        "id": "newspaper_folding",
+        "text": "3. Fold Out of Recycled Newspaper ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -10,
+          "coaches": -6,
+          "parents": -4
+        },
+        "reaction": "Newsprint ink smudged all over fingers, and floppy folds collapsed easily.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "math_app_subscription",
+    "title": "Digital Training: Olympiad Practice Portal",
+    "speaker": "Student",
+    "description": "Piper shows Coach John an adaptive competition practice app with timed daily speed drills and instant solution breakdowns.",
+    "choices": [
+      {
+        "id": "team_subscription",
+        "text": "1. Team Unlimited Cloud Seat License ($2.60 / student)",
+        "cost_formula": "2.60 * students",
+        "effects": {
+          "students": 16,
+          "coaches": 10,
+          "parents": 4
+        },
+        "reaction": "Kids are practicing math on school buses and between classes! Leaderboard rivalry is intense.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Cloud seats cost $2.60 per student for {students} members. What is our subscription cost?",
+          "answer_formula": "2.60 * students",
+          "unit": "$",
+          "bonus_happiness": 5,
+          "penalty_cost": 3.5
+        }
+      },
+      {
+        "id": "single_station_license",
+        "text": "2. Single Classroom Smartboard License ($16.00 flat)",
+        "cost_formula": "16.00",
+        "effects": {
+          "students": 6,
+          "coaches": 6,
+          "parents": 6
+        },
+        "reaction": "Good collaborative drills on the main screen, though students must take turns.",
+        "math_challenge": {
+          "type": "unit_rate",
+          "prompt": "A single station license costs $16.00. If 4 study groups share the license evenly, what is the cost per group?",
+          "answer_formula": "16.00 / 4.0",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.0
+        }
+      },
+      {
+        "id": "skip_digital_portal",
+        "text": "3. Stick Exclusively to Paper Mimeographs ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -8,
+          "coaches": 0,
+          "parents": 0
+        },
+        "reaction": "Paper drills feel monotonous, but club savings remain intact.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "custom_lanyards",
+    "title": "Tournament Gear: ID Badges & Lanyards",
+    "speaker": "Parent",
+    "description": "Ms. Chaidee warns that with over 400 students attending the regional meet, matching lanyard badges are essential for security and team identity.",
+    "choices": [
+      {
+        "id": "embroidered_lanyards",
+        "text": "1. Woven Math Team Lanyards & Plastic Pouches ($1.85 / student)",
+        "cost_formula": "1.85 * students",
+        "effects": {
+          "students": 12,
+          "coaches": 6,
+          "parents": 10
+        },
+        "reaction": "Students felt like true academic athletes marching into the auditorium with credential cards!",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Woven lanyards cost $1.85 each for {students} students. What is the total order cost?",
+          "answer_formula": "1.85 * students",
+          "unit": "$",
+          "bonus_happiness": 5,
+          "penalty_cost": 3.0
+        }
+      },
+      {
+        "id": "adhesive_badges",
+        "text": "2. Peel-and-Stick Paper Name Tags ($0.30 / student)",
+        "cost_formula": "0.30 * students",
+        "effects": {
+          "students": 2,
+          "coaches": 2,
+          "parents": 4
+        },
+        "reaction": "Budget-conscious and functional, though half peeled off after lunch.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Adhesive tags cost $0.30 per student for {students} students. What is the expense?",
+          "answer_formula": "0.30 * students",
+          "unit": "$",
+          "bonus_happiness": 3,
+          "penalty_cost": 1.5
+        }
+      },
+      {
+        "id": "no_name_badges",
+        "text": "3. No Badges ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -6,
+          "coaches": -4,
+          "parents": -6
+        },
+        "reaction": "Two chaperones lost track of students in the crowded auditorium hallways.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "sudoku_booklet_sale",
+    "title": "Fundraiser: Custom Logic & Sudoku Booklets",
+    "speaker": "Student",
+    "description": "Piper and the mathletes designed 30 original KenKen, Kakuro, and Sudoku puzzles and want to publish pocket booklets to sell to classmates!",
+    "choices": [
+      {
+        "id": "glossy_booklet",
+        "text": "1. Spiral-Bound Booklets ($22.00 setup, sell {students_x2} copies at $4.00 ea)",
+        "cost_formula": "22.00",
+        "revenue_formula": "4.00 * students * 2",
+        "effects": {
+          "students": 14,
+          "coaches": 8,
+          "parents": 10
+        },
+        "reaction": "Teachers and students bought out the entire first print run before 3rd period!",
+        "math_challenge": {
+          "type": "profit_margin",
+          "prompt": "Printing setup is $22.00. We sell {students_x2} puzzle booklets at $4.00 each. What is the net profit?",
+          "answer_formula": "(4.00 * students * 2) - 22.00",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 5.0
+        }
+      },
+      {
+        "id": "stapled_leaflets",
+        "text": "2. Stapled Photocopy Leaflets ($7.00 copy fee, sell {students_x2} copies at $1.50 ea)",
+        "cost_formula": "7.00",
+        "revenue_formula": "1.50 * students * 2",
+        "effects": {
+          "students": 6,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Cheap printing, but steady sales earned a modest contribution.",
+        "math_challenge": {
+          "type": "profit_margin",
+          "prompt": "Copying costs $7.00. Selling {students_x2} leaflets at $1.50 each yields what net profit?",
+          "answer_formula": "(1.50 * students * 2) - 7.00",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.5
+        }
+      },
+      {
+        "id": "cancel_publication",
+        "text": "3. Cancel the Project - Just Practice ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -10,
+          "coaches": 2,
+          "parents": -2
+        },
+        "reaction": "The students felt all their puzzle creation effort was wasted.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "science_center_tickets",
+    "title": "Field Trip: Hands-on Mathematics Gallery",
+    "speaker": "Coach",
+    "description": "The Science Discovery Center opened an interactive exhibit on fractals, probability curves, and chaos pendulums.",
+    "choices": [
+      {
+        "id": "full_admission_subsidy",
+        "text": "1. Subsidize Group Tickets ($5.50 / student)",
+        "cost_formula": "5.50 * students",
+        "effects": {
+          "students": 18,
+          "coaches": 10,
+          "parents": 6
+        },
+        "reaction": "Watching a giant Galton board demonstrate normal distribution blew everyone away!",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Discount group tickets cost $5.50 per student for {students} students. What is total admission?",
+          "answer_formula": "5.50 * students",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 5.5
+        }
+      },
+      {
+        "id": "partial_co_pay",
+        "text": "2. Club Covers $2.00 Co-Pay per Student ($2.00 / student)",
+        "cost_formula": "2.00 * students",
+        "effects": {
+          "students": 8,
+          "coaches": 6,
+          "parents": 4
+        },
+        "reaction": "Families chipped in the rest. An affordable and fun outing.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "The club covers $2.00 each for {students} students. What is the treasury expense?",
+          "answer_formula": "2.00 * students",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.5
+        }
+      },
+      {
+        "id": "virtual_tour",
+        "text": "3. Watch 360-degree Virtual Museum Video in Class ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -8,
+          "coaches": 2,
+          "parents": 2
+        },
+        "reaction": "Informative slides, but nowhere near the experience of pulling giant pendulum levers.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "whiteboard_paint_project",
+    "title": "Classroom Upgrade: Collaborative Dry-Erase Wall",
+    "speaker": "Coach",
+    "description": "Coach John wants 10 feet of wall coated in whiteboard paint so mathletes can stand side-by-side solving long multi-digit proof chains.",
+    "choices": [
+      {
+        "id": "whiteboard_wall_kit",
+        "text": "1. Dry-Erase Wall Paint Kit ($38.00 kit + 8% sales tax)",
+        "cost_formula": "38.00 * 1.08",
+        "effects": {
+          "students": 16,
+          "coaches": 14,
+          "parents": 2
+        },
+        "reaction": "The whole back wall is now a massive whiteboard! Practice sessions buzz with electric energy.",
+        "math_challenge": {
+          "type": "tax_calc",
+          "prompt": "A dry-erase paint kit costs $38.00. With 8% sales tax ($38.00 * 1.08), what is the total cost?",
+          "answer_formula": "38.00 * 1.08",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 4.0
+        }
+      },
+      {
+        "id": "lap_whiteboards",
+        "text": "2. Pack of 4 Portable Lap Whiteboards ($14.00 flat)",
+        "cost_formula": "14.00",
+        "effects": {
+          "students": 6,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Small lap boards allow pairs to work together quietly at desks.",
+        "math_challenge": {
+          "type": "unit_rate",
+          "prompt": "Four portable whiteboards cost $14.00 in total. What is the unit cost per board?",
+          "answer_formula": "14.00 / 4.0",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.0
+        }
+      },
+      {
+        "id": "use_chalkboard",
+        "text": "3. Stick to the Dusty Old Slate Chalkboard ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -6,
+          "coaches": -6,
+          "parents": 0
+        },
+        "reaction": "Chalk dust made Coach John cough and yellow residue coated everyone's sleeves.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "math_relay_medals",
+    "title": "Recognition: Speed Relay Derby Medals",
+    "speaker": "Parent",
+    "description": "Ms. Chaidee argues that recognizing personal improvement and speed records keeps intermediate students hungry to excel.",
+    "choices": [
+      {
+        "id": "die_cast_medals",
+        "text": "1. Die-Cast Ribbon Medals Pack ($24.00 set, 15% promotional discount)",
+        "cost_formula": "24.00 * 0.85",
+        "effects": {
+          "students": 15,
+          "coaches": 8,
+          "parents": 10
+        },
+        "reaction": "Substantial metal medallions! Students wore them around school all Friday with pride.",
+        "math_challenge": {
+          "type": "percentage_discount",
+          "prompt": "A medal pack retails at $24.00. With a 15% markdown (paying 85%), what is the discounted total?",
+          "answer_formula": "24.00 * 0.85",
+          "unit": "$",
+          "bonus_happiness": 5,
+          "penalty_cost": 3.5
+        }
+      },
+      {
+        "id": "gold_foil_seals",
+        "text": "2. Gold Foil Certificate Seals (2 packs at $2.75 ea)",
+        "cost_formula": "2.75 * 2.0",
+        "effects": {
+          "students": 4,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Certificates look sharp and official with embossed gold stickers.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Two packs of embossed gold seals at $2.75 each. What is the total expense?",
+          "answer_formula": "2.75 * 2.0",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 1.5
+        }
+      },
+      {
+        "id": "verbal_shoutout",
+        "text": "3. Verbal Congratulations Only ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -8,
+          "coaches": 0,
+          "parents": -4
+        },
+        "reaction": "A quick round of applause was nice, but without awards, motivation dwindled.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "cookie_dough_fundraiser",
+    "title": "Fundraiser: Pre-Order Gourmet Cookie Dough",
+    "speaker": "Parent",
+    "description": "Families take pre-orders for 3 lb tubs of frozen gourmet cookie dough to build a championship travel cushion!",
+    "choices": [
+      {
+        "id": "full_dough_drive",
+        "text": "1. School-Wide Campaign (Sell {students_x2} tubs at $3.50 profit ea, minus $10 shipping)",
+        "cost_formula": "0",
+        "revenue_formula": "(3.50 * students * 2) - 10.00",
+        "effects": {
+          "students": 10,
+          "coaches": 6,
+          "parents": 12
+        },
+        "reaction": "Massive sales! Chocolate chip tubs stacked high in the cafeteria freezer earned big money.",
+        "math_challenge": {
+          "type": "multi_step",
+          "prompt": "Club earns $3.50 profit per tub on {students_x2} tubs, minus a $10.00 delivery freight fee. What is net profit?",
+          "answer_formula": "(3.50 * students * 2) - 10.00",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 5.0
+        }
+      },
+      {
+        "id": "express_dough_drive",
+        "text": "2. Express Drive (Sell {students} tubs at $2.00 profit ea)",
+        "cost_formula": "0",
+        "revenue_formula": "2.00 * students",
+        "effects": {
+          "students": 4,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Quick turn-around and hassle-free distribution raised helpful extra cash.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "{students} tubs sold earning $2.00 profit per tub. What is the total funds raised?",
+          "answer_formula": "2.00 * students",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.5
+        }
+      },
+      {
+        "id": "pass_on_fundraising",
+        "text": "3. Pass on the Campaign ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -4,
+          "coaches": 2,
+          "parents": -6
+        },
+        "reaction": "No distribution chaos, but the bank balance remains stagnant.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "chess_clocks_order",
+    "title": "Speed Training: Digital Blitz Match Clocks",
+    "speaker": "Student",
+    "description": "To prepare for speed-round 60-second math blitzes, Piper asks for digital duel timers.",
+    "choices": [
+      {
+        "id": "pro_digital_clocks",
+        "text": "1. Four Tournament Dual-Display Clocks ($13.25 each)",
+        "cost_formula": "13.25 * 4.0",
+        "effects": {
+          "students": 16,
+          "coaches": 12,
+          "parents": -2
+        },
+        "reaction": "Slamming the timer paddles after solving equations brought thrilling adrenaline!",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Four digital tournament clocks cost $13.25 each. What is the invoice total?",
+          "answer_formula": "13.25 * 4.0",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 5.0
+        }
+      },
+      {
+        "id": "kitchen_timers",
+        "text": "2. Four Rotary Kitchen Timers ($2.50 each)",
+        "cost_formula": "2.50 * 4.0",
+        "effects": {
+          "students": 4,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Tick-tick-tick... DING! Loud and clunky, but gave everyone a sense of urgency.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Four kitchen rotary timers at $2.50 each. What is the total expense?",
+          "answer_formula": "2.50 * 4.0",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.0
+        }
+      },
+      {
+        "id": "coach_whistle",
+        "text": "3. Coach Claps and Shouts Time ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -8,
+          "coaches": -6,
+          "parents": 0
+        },
+        "reaction": "Clapping hands disrupted focus and Coach John's vocal cords were exhausted.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "tutor_peer_mentoring",
+    "title": "Service Learning: 3rd-Grade Mentorship Fuel",
+    "speaker": "Coach",
+    "description": "Our 5th graders volunteer to mentor 3rd-grade beginners on multiplication facts, but need healthy fuel after a long school day.",
+    "choices": [
+      {
+        "id": "fruit_and_trailmix",
+        "text": "1. Fruit Pouches & Trail Mix Packs ($1.15 / student)",
+        "cost_formula": "1.15 * students",
+        "effects": {
+          "students": 12,
+          "coaches": 8,
+          "parents": 8
+        },
+        "reaction": "The mentorship pairs had soaring enthusiasm and young apprentices made rapid progress!",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Nutritious snack packs cost $1.15 per student for {students} mentors. What is the total expense?",
+          "answer_formula": "1.15 * students",
+          "unit": "$",
+          "bonus_happiness": 5,
+          "penalty_cost": 2.5
+        }
+      },
+      {
+        "id": "animal_cracker_tub",
+        "text": "2. Giant 40 oz Tub of Animal Crackers ($4.75 split across 5 sessions)",
+        "cost_formula": "4.75",
+        "effects": {
+          "students": 4,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Crunchy elephants and bears kept spirits up on a razor-thin budget.",
+        "math_challenge": {
+          "type": "division_decimals",
+          "prompt": "A $4.75 cracker tub lasts 5 mentoring sessions. What is the snack expense per session?",
+          "answer_formula": "4.75 / 5.0",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 1.5
+        }
+      },
+      {
+        "id": "no_snacks_mentoring",
+        "text": "3. Mentor on Empty Stomachs ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -10,
+          "coaches": -4,
+          "parents": -4
+        },
+        "reaction": "Tired mentors lost patience quickly and 3rd graders got distracted.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "competition_lunch_boxes",
+    "title": "Logistics: Tournament Day Boxed Lunches",
+    "speaker": "Parent",
+    "description": "Ms. Chaidee warns that venue food court lines at the regional meet exceed 45 minutes; pre-catering saves critical warm-up study time.",
+    "choices": [
+      {
+        "id": "deli_wraps",
+        "text": "1. Fresh Deli Turkey & Veggie Wrap Boxes ($4.20 / student)",
+        "cost_formula": "4.20 * students",
+        "effects": {
+          "students": 16,
+          "coaches": 10,
+          "parents": 8
+        },
+        "reaction": "Delivered right to the team homeroom! Students ate peacefully and reviewed cheat sheets.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Catered wrap boxes cost $4.20 per student for {students} students. What is the catering invoice?",
+          "answer_formula": "4.20 * students",
+          "unit": "$",
+          "bonus_happiness": 5,
+          "penalty_cost": 4.5
+        }
+      },
+      {
+        "id": "pbj_and_fruit",
+        "text": "2. Bulk PB&J Sandwiches & Bananas ($1.35 / student)",
+        "cost_formula": "1.35 * students",
+        "effects": {
+          "students": 5,
+          "coaches": 4,
+          "parents": 6
+        },
+        "reaction": "Simple brown bag lunches saved tons of cash and kept everyone on schedule.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Brown bag lunches cost $1.35 per student for {students} students. What is total expense?",
+          "answer_formula": "1.35 * students",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.0
+        }
+      },
+      {
+        "id": "stand_in_lines",
+        "text": "3. Wait in Convention Center Cafeteria Lines ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -12,
+          "coaches": -8,
+          "parents": -8
+        },
+        "reaction": "Three students were late to Round 2 due to endless line waits. A chaotic afternoon.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "end_of_year_trophies",
+    "title": "Season Finale: Engraved Acrylic Math Trophies",
+    "speaker": "Coach",
+    "description": "To celebrate individual and team breakthroughs, Coach John proposes custom engraved acrylic pyramid trophies.",
+    "choices": [
+      {
+        "id": "engraved_pyramids",
+        "text": "1. Custom Laser-Engraved Pyramid Trophies ($3.80 / student)",
+        "cost_formula": "3.80 * students",
+        "effects": {
+          "students": 18,
+          "coaches": 12,
+          "parents": 10
+        },
+        "reaction": "Gleaming crystal pyramids inscribed with each student's name! Tears of joy all around.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Laser trophies cost $3.80 each for {students} team members. What is our trophy invoice?",
+          "answer_formula": "3.80 * students",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 4.5
+        }
+      },
+      {
+        "id": "ribbon_rosettes",
+        "text": "2. Satin Rosette Ribbons & Framed Certificates ($1.65 / student)",
+        "cost_formula": "1.65 * students",
+        "effects": {
+          "students": 6,
+          "coaches": 6,
+          "parents": 8
+        },
+        "reaction": "Handsome certificates in blue frames. Dignified recognition at a moderate cost.",
+        "math_challenge": {
+          "type": "decimal_mult",
+          "prompt": "Ribbon and frame sets cost $1.65 per student for {students} members. What is the total expense?",
+          "answer_formula": "1.65 * students",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.5
+        }
+      },
+      {
+        "id": "print_certificates_only",
+        "text": "3. Black & White Paper Certificates on Copy Paper ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -10,
+          "coaches": -4,
+          "parents": -6
+        },
+        "reaction": "Uninspiring flimsy paper certificates failed to reflect a season of hard work.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "math_board_games",
+    "title": "Strategy Club: Prime Climb & Spatial Board Games",
+    "speaker": "Student",
+    "description": "Piper requests specialized mathematical board games (Prime Climb, Set, and Proof!) for Friday free-play problem solving.",
+    "choices": [
+      {
+        "id": "deluxe_game_bundle",
+        "text": "1. Deluxe 3-Game Educational Bundle ($52.00, 25% educational discount)",
+        "cost_formula": "52.00 * 0.75",
+        "effects": {
+          "students": 16,
+          "coaches": 8,
+          "parents": 6
+        },
+        "reaction": "Prime factorization suddenly became an addictive race! Students beg to stay after hours.",
+        "math_challenge": {
+          "type": "percentage_discount",
+          "prompt": "The 3-game set lists for $52.00. With a 25% educational coupon (paying 75%), how much does the club pay?",
+          "answer_formula": "52.00 * 0.75",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 5.0
+        }
+      },
+      {
+        "id": "card_deck_games",
+        "text": "2. Two Decks of 'Set' Logic Cards ($16.00 total)",
+        "cost_formula": "16.00",
+        "effects": {
+          "students": 6,
+          "coaches": 6,
+          "parents": 6
+        },
+        "reaction": "Fast pattern recognition game! Cards fit easily into club drawers.",
+        "math_challenge": {
+          "type": "unit_rate",
+          "prompt": "Two boxed decks of logic cards cost $16.00 total. What is the unit cost per deck?",
+          "answer_formula": "16.00 / 2.0",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.0
+        }
+      },
+      {
+        "id": "tic_tac_toe",
+        "text": "3. Play Tic-Tac-Toe on Scraps of Paper ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -8,
+          "coaches": -4,
+          "parents": 0
+        },
+        "reaction": "Kids got bored within five minutes since every game resulted in a tie.",
+        "math_challenge": null
+      }
+    ]
+  },
+  {
+    "id": "guest_tutor_masterclass",
+    "title": "Masterclass: High School Olympiad Champ Lecture",
+    "speaker": "Coach",
+    "description": "A high school state math champion offers a 2-hour masterclass on modular arithmetic and fast mental tricks.",
+    "choices": [
+      {
+        "id": "champ_stipend_and_booklets",
+        "text": "1. Guest Stipend & Printed Masterclass Folios ($2.40 / student + $15.00 stipend)",
+        "cost_formula": "(2.40 * students) + 15.00",
+        "effects": {
+          "students": 16,
+          "coaches": 12,
+          "parents": 8
+        },
+        "reaction": "The high school senior was an inspiring role model! Students absorbed complex tricks like sponges.",
+        "math_challenge": {
+          "type": "multi_step",
+          "prompt": "Printed folios cost $2.40 per student for {students} members, plus a $15.00 speaker stipend. What is total cost?",
+          "answer_formula": "(2.40 * students) + 15.00",
+          "unit": "$",
+          "bonus_happiness": 6,
+          "penalty_cost": 4.5
+        }
+      },
+      {
+        "id": "speaker_stipend_only",
+        "text": "2. Speaker Stipend Only ($15.00 flat, digital worksheet)",
+        "cost_formula": "15.00",
+        "effects": {
+          "students": 6,
+          "coaches": 8,
+          "parents": 4
+        },
+        "reaction": "Great guest lecture and dynamic chalkboard explanations on a shoestring budget.",
+        "math_challenge": {
+          "type": "unit_rate",
+          "prompt": "The $15.00 stipend is split equally across 3 club training categories. How much is allocated per category?",
+          "answer_formula": "15.00 / 3.0",
+          "unit": "$",
+          "bonus_happiness": 4,
+          "penalty_cost": 2.0
+        }
+      },
+      {
+        "id": "decline_lecture",
+        "text": "3. Decline the Offer - Regular Coach Practice ($0)",
+        "cost_formula": "0",
+        "effects": {
+          "students": -4,
+          "coaches": -2,
+          "parents": 0
+        },
+        "reaction": "A missed chance to connect with an inspiring high school peer mentor.",
+        "math_challenge": null
+      }
+    ]
   }
 ]

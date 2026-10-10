@@ -6,6 +6,7 @@ var events_path: String = ""
 var scenarios_raw: Array = []
 var events_raw: Array = []
 var season_deck: Array = []
+var event_deck: Array = []
 
 func _init(p_scenarios_path: String = "res://data/scenarios.json", p_events_path: String = "res://data/events.json") -> void:
 	scenarios_path = p_scenarios_path
@@ -39,29 +40,40 @@ func start_season(total_weeks: int, keep_starter_week1: bool = true) -> void:
 		season_deck = []
 		return
 
+	# Reset and shuffle events deck for strict non-repeating events
+	event_deck = events_raw.duplicate()
+	event_deck.shuffle()
+
 	if keep_starter_week1:
 		var starter: Dictionary = scenarios_raw[0]
 		var pool: Array = scenarios_raw.slice(1)
+		pool.shuffle()
 		var deck: Array = [starter]
+		var needed := mini(pool.size(), total_weeks - 1)
+		deck.append_array(pool.slice(0, needed))
 
-		var remaining_weeks := total_weeks - 1
-		while remaining_weeks > 0:
-			var shuffled_pool: Array = pool.duplicate() if not pool.is_empty() else [starter]
-			shuffled_pool.shuffle()
-			var weeks_to_add: int = mini(shuffled_pool.size(), remaining_weeks)
-			deck.append_array(shuffled_pool.slice(0, weeks_to_add))
-			remaining_weeks -= weeks_to_add
+		# In case total_weeks exceeds available pool size, cycle without immediate adjacent repeats
+		var remaining := total_weeks - deck.size()
+		while remaining > 0:
+			var extra: Array = scenarios_raw.duplicate()
+			extra.shuffle()
+			var add_count := mini(extra.size(), remaining)
+			deck.append_array(extra.slice(0, add_count))
+			remaining -= add_count
 
 		season_deck = deck.slice(0, total_weeks)
 	else:
-		var deck: Array = []
-		var remaining_weeks := total_weeks
-		while remaining_weeks > 0:
-			var shuffled_pool: Array = scenarios_raw.duplicate()
-			shuffled_pool.shuffle()
-			var weeks_to_add: int = mini(shuffled_pool.size(), remaining_weeks)
-			deck.append_array(shuffled_pool.slice(0, weeks_to_add))
-			remaining_weeks -= weeks_to_add
+		var pool: Array = scenarios_raw.duplicate()
+		pool.shuffle()
+		var deck: Array = pool.slice(0, mini(pool.size(), total_weeks))
+
+		var remaining := total_weeks - deck.size()
+		while remaining > 0:
+			var extra: Array = scenarios_raw.duplicate()
+			extra.shuffle()
+			var add_count := mini(extra.size(), remaining)
+			deck.append_array(extra.slice(0, add_count))
+			remaining -= add_count
 
 		season_deck = deck.slice(0, total_weeks)
 
@@ -129,7 +141,11 @@ func get_scenario_for_week(week_num: int, state: ClubState) -> Scenario:
 func get_event_if_triggered(week_num: int, state: ClubState) -> GameEvent:
 	# Periodic unexpected event on weeks 3, 6, 9, 12, etc.
 	if week_num > 1 and week_num % 3 == 0 and not events_raw.is_empty():
-		var raw: Dictionary = events_raw.pick_random()
+		if event_deck.is_empty():
+			event_deck = events_raw.duplicate()
+			event_deck.shuffle()
+
+		var raw: Dictionary = event_deck.pop_front()
 		var cost_formula: Variant = raw.get("cost_formula", raw.get("cost", 0))
 		var cost := state.evaluate_formula(cost_formula)
 

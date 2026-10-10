@@ -83,7 +83,7 @@ text = "😃 Thrilled"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.960784, 0.843137, 0.423529, 1)
 theme_override_font_sizes/font_size = 13
-text = "Jordan (Student)"
+text = "Piper (Student)"
 
 [node name="MoodLabel" type="Label" parent="HBox/StudentCard/Content/VBox"]
 layout_mode = 2
@@ -161,7 +161,7 @@ text = "😊 Supportive"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.85098, 0.580392, 0.94902, 1)
 theme_override_font_sizes/font_size = 13
-text = "Mrs. Chen (Parent)"
+text = "Ms. Chaidee (Parent)"
 
 [node name="MoodLabel" type="Label" parent="HBox/ParentCard/Content/VBox"]
 layout_mode = 2

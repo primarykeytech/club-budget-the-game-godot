@@ -28,7 +28,7 @@ Players act as treasurer and advisor for an afterschool math club, navigating fi
 - Complete modular Godot UI node hierarchy with rounded modern cards, high contrast typography, and responsive layouts:
   - **Main Game Coordinator** ([`scenes/main.tscn`](res://scenes/main.tscn) & [`game_controller.gd`](res://scripts/ui/game_controller.gd)): Coordinates state transitions, keyboard shortcuts (`1`, `2`, `3`, `Space`, `Enter`), and modal management.
   - **HUD Dashboard** ([`scenes/ui/hud.tscn`](res://scenes/ui/hud.tscn)): Live budget counter, week indicator, dynamic burn-rate allowance, and 3 color-thresholded stakeholder morale progress bars with smooth animated tweens.
-  - **Stage View** ([`scenes/ui/stage_view.tscn`](res://scenes/ui/stage_view.tscn)): Classroom chalkboard environment with reactive character cards (Jordan the student rep, Coach John, and Parent Mrs. Chen) with speaking highlights and emotional mood states (Thrilled, Satisfied, Stressed, Crisis).
+  - **Stage View** ([`scenes/ui/stage_view.tscn`](res://scenes/ui/stage_view.tscn)): Classroom chalkboard environment with reactive character cards (Piper the student rep, Coach John, and Parent Ms. Chaidee) with speaking highlights and emotional mood states (Thrilled, Satisfied, Stressed, Crisis).
   - **Scenario Panel** ([`scenes/ui/scenario_panel.tscn`](res://scenes/ui/scenario_panel.tscn)): Narrative description cards and 3 styled action buttons displaying cost, revenue, morale tags, and math badges.
   - **Modals:**
     - [`MathModal`](res://scenes/ui/modals/math_modal.tscn): Interactive multiple-choice challenge modal with instant feedback.
@@ -41,9 +41,9 @@ Players act as treasurer and advisor for an afterschool math club, navigating fi
 
 ### Phase 3: Modern Art & Audio Assets ✅
 - **High-Resolution Character Portraits (`assets/images/characters/`):**
-  - **Jordan (Student Rep):** Illustrated portrait bust with red pi baseball cap, curls, and yellow math club hoodie.
+  - **Piper (Student Rep):** Illustrated portrait bust with red pi baseball cap, curls, and yellow math club hoodie.
   - **Coach John (Head Coach):** Illustrated portrait bust with dark wavy hair, warm smile, and royal blue coaching polo with math compass emblem.
-  - **Mrs. Chen (Parent):** Illustrated portrait bust with sleek bob, purple cardigan, and warm coffee mug.
+  - **Ms. Chaidee (Parent):** Illustrated portrait bust with sleek bob, purple cardigan, and warm coffee mug.
 - **Classroom Environment Background (`assets/images/backgrounds/`):**
   - Warm sunlit classroom interior with chalk formulas, math diagrams, and banners.
 - **Complete Audio System (`scripts/audio/audio_manager.gd`):**

@@ -15,6 +15,8 @@ func _ready() -> void:
 	run_test("test_math_modal_interaction", test_math_modal_interaction)
 	run_test("test_game_over_modal_trigger", test_game_over_modal_trigger)
 	run_test("test_restart_to_setup_flow", test_restart_to_setup_flow)
+	run_test("test_character_names_display", test_character_names_display)
+	run_test("test_timer_integration", test_timer_integration)
 
 	print("========================================")
 	print("Results: %d Passed, %d Failed" % [passed_count, failed_count])
@@ -157,6 +159,75 @@ func test_restart_to_setup_flow() -> String:
 		return "Expected gameplay view to hide on restart"
 	if not controller.setup_screen.visible:
 		return "Expected setup screen to show on restart"
+
+	controller.queue_free()
+	return ""
+
+func test_character_names_display() -> String:
+	var controller := _create_game_controller()
+	var student_text := controller.stage_view.student_badge.text
+	var coach_text := controller.stage_view.coach_badge.text
+	var parent_text := controller.stage_view.parent_badge.text
+
+	if student_text != "Piper (Student)":
+		controller.queue_free()
+		return "Expected Student badge 'Piper (Student)', got '%s'" % student_text
+
+	if not coach_text.contains("Coach John"):
+		controller.queue_free()
+		return "Expected Coach badge to contain 'Coach John', got '%s'" % coach_text
+
+	if parent_text != "Ms. Chaidee (Parent)":
+		controller.queue_free()
+		return "Expected Parent badge 'Ms. Chaidee (Parent)', got '%s'" % parent_text
+
+	controller.queue_free()
+	return ""
+
+func test_timer_integration() -> String:
+	var controller := _create_game_controller()
+
+	# Verify setup screen has 5 timer presets
+	if controller.setup_screen.timer_option.get_item_count() != 5:
+		controller.queue_free()
+		return "Expected 5 timer options, got %d" % controller.setup_screen.timer_option.get_item_count()
+
+	# Start game with 60-second timer
+	controller._on_setup_confirmed("Timer Test Club", 300.0, 16, 8, 60)
+	if controller.timer_limit != 60:
+		controller.queue_free()
+		return "Expected controller timer_limit to be 60, got %d" % controller.timer_limit
+
+	if not controller.scenario_panel.timer_box.visible:
+		controller.queue_free()
+		return "Expected scenario panel timer box to be visible"
+
+	if controller.scenario_panel.timer_label.text != "60s":
+		controller.queue_free()
+		return "Expected scenario panel timer label '60s', got '%s'" % controller.scenario_panel.timer_label.text
+
+	# Test math modal with 30s timer
+	var challenge := MathChallenge.new("test", "Solve 5 + 5", 10.0, "$", [8.0, 9.0, 10.0, 11.0], 5, 2.0)
+	controller.math_modal.open_challenge(challenge, 30)
+	if not controller.math_modal.timer_box.visible:
+		controller.queue_free()
+		return "Expected math modal timer box to be visible"
+
+	if controller.math_modal.timer_label.text != "30s":
+		controller.queue_free()
+		return "Expected math modal timer label '30s', got '%s'" % controller.math_modal.timer_label.text
+
+	# Trigger timeout
+	controller.math_modal._on_time_expired()
+	if not controller.math_modal.answered:
+		controller.queue_free()
+		return "Expected challenge to be marked answered on timeout"
+	if controller.math_modal.is_correct:
+		controller.queue_free()
+		return "Expected challenge to be marked incorrect on timeout"
+	if not controller.math_modal.feedback_label.text.contains("Time's Up!"):
+		controller.queue_free()
+		return "Expected feedback label to announce 'Time's Up!'"
 
 	controller.queue_free()
 	return ""

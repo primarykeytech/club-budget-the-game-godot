@@ -1,7 +1,7 @@
 class_name SetupScreen
 extends Control
 
-signal setup_confirmed(club_name: String, budget: float, students: int, weeks: int)
+signal setup_confirmed(club_name: String, budget: float, students: int, weeks: int, timer_seconds: int)
 signal back_pressed()
 
 @onready var preset_option: OptionButton = $CenterContainer/Card/VBox/FormGrid/PresetOption
@@ -16,6 +16,8 @@ signal back_pressed()
 @onready var weeks_slider: HSlider = $CenterContainer/Card/VBox/FormGrid/WeeksSlider
 @onready var weeks_val_label: Label = $CenterContainer/Card/VBox/FormGrid/WeeksValLabel
 
+@onready var timer_option: OptionButton = $CenterContainer/Card/VBox/FormGrid/TimerOption
+
 @onready var launch_btn: Button = $CenterContainer/Card/VBox/ButtonGroup/LaunchButton
 @onready var back_btn: Button = $CenterContainer/Card/VBox/ButtonGroup/BackButton
 
@@ -28,6 +30,14 @@ const PRESETS := [
 	"Pythagoras Club"
 ]
 
+const TIMER_OPTIONS := [
+	{"label": "Off (Relaxed)", "seconds": 0},
+	{"label": "30 Seconds", "seconds": 30},
+	{"label": "60 Seconds", "seconds": 60},
+	{"label": "90 Seconds", "seconds": 90},
+	{"label": "120 Seconds", "seconds": 120}
+]
+
 func _ready() -> void:
 	for p in PRESETS:
 		preset_option.add_item(p)
@@ -35,6 +45,10 @@ func _ready() -> void:
 
 	preset_option.item_selected.connect(_on_preset_selected)
 	custom_name_input.text = PRESETS[0]
+
+	for opt in TIMER_OPTIONS:
+		timer_option.add_item(opt["label"])
+	timer_option.selected = 0
 
 	budget_slider.value_changed.connect(func(v): budget_val_label.text = "$%.0f" % v)
 	students_slider.value_changed.connect(func(v): students_val_label.text = "%d Students" % int(v))
@@ -62,9 +76,13 @@ func _on_launch() -> void:
 	if final_name.is_empty():
 		final_name = "Mathletes Club"
 
+	var timer_idx: int = timer_option.selected
+	var timer_seconds: int = TIMER_OPTIONS[timer_idx]["seconds"] if timer_idx >= 0 and timer_idx < TIMER_OPTIONS.size() else 0
+
 	setup_confirmed.emit(
 		final_name,
 		float(budget_slider.value),
 		int(students_slider.value),
-		int(weeks_slider.value)
+		int(weeks_slider.value),
+		timer_seconds
 	)

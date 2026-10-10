@@ -18,6 +18,7 @@ var state: ClubState = null
 var scenario_mgr: ScenarioManager = ScenarioManager.new("res://data/scenarios.json", "res://data/events.json")
 var current_scenario: Scenario = null
 var pending_choice: Choice = null
+var timer_limit: int = 0
 
 func _ready() -> void:
 	title_screen.start_pressed.connect(_on_title_start)
@@ -51,8 +52,9 @@ func _on_setup_back() -> void:
 	_play_sfx("select")
 	_show_title()
 
-func _on_setup_confirmed(club_name: String, budget: float, students: int, weeks: int) -> void:
+func _on_setup_confirmed(club_name: String, budget: float, students: int, weeks: int, timer_seconds: int = 0) -> void:
 	_play_sfx("confirm")
+	timer_limit = timer_seconds
 	state = ClubState.new(club_name, budget, students, weeks, 72.0)
 	scenario_mgr.start_season(weeks, true)
 
@@ -94,7 +96,7 @@ func _load_scenario() -> void:
 	current_scenario = scenario_mgr.get_scenario_for_week(state.current_week, state)
 	hud.update_hud(state)
 	stage_view.update_stage(current_scenario.speaker, state.happiness)
-	scenario_panel.display_scenario(current_scenario)
+	scenario_panel.display_scenario(current_scenario, timer_limit)
 
 func _on_choice_selected(index: int) -> void:
 	if current_scenario == null or index >= current_scenario.choices.size():
@@ -104,7 +106,7 @@ func _on_choice_selected(index: int) -> void:
 	pending_choice = current_scenario.choices[index]
 
 	if pending_choice.math_challenge != null:
-		math_modal.open_challenge(pending_choice.math_challenge)
+		math_modal.open_challenge(pending_choice.math_challenge, timer_limit)
 	else:
 		_resolve_choice(null)
 

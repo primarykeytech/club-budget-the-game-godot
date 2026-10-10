@@ -1,57 +1,134 @@
 [
   {
-	"id": "broken_sharpener",
-	"title": "Crunch! Electric Sharpener Jammed",
-	"description": "Someone jammed a gummy candy into the heavy-duty pencil sharpener.",
-	"cost": 28.00,
-	"effects": {
-	  "students": -4,
-	  "coaches": -8,
-	  "parents": 0
-	}
+    "id": "broken_sharpener",
+    "title": "Crunch! Electric Sharpener Jammed",
+    "description": "Someone jammed a gummy candy into the heavy-duty pencil sharpener.",
+    "cost": 28.0,
+    "effects": {
+      "students": -4,
+      "coaches": -8,
+      "parents": 0
+    }
   },
   {
-	"id": "district_bus_fee",
-	"title": "District Transportation Surcharge",
-	"description": "District notified all afterschool clubs of a sudden $1.20 per student fuel surcharge.",
-	"cost_formula": "1.20 * students",
-	"effects": {
-	  "students": 0,
-	  "coaches": -6,
-	  "parents": -6
-	}
+    "id": "district_bus_fee",
+    "title": "District Transportation Surcharge",
+    "description": "District notified all afterschool clubs of a sudden $1.20 per student fuel surcharge.",
+    "cost_formula": "1.20 * students",
+    "effects": {
+      "students": 0,
+      "coaches": -6,
+      "parents": -6
+    }
   },
   {
-	"id": "calculator_battery_leak",
-	"title": "Acid Leak! Dead Calculator Batteries",
-	"description": "The reserve scientific calculators corroded over winter break. Replacement batteries needed!",
-	"cost": 18.50,
-	"effects": {
-	  "students": -2,
-	  "coaches": -6,
-	  "parents": 0
-	}
+    "id": "calculator_battery_leak",
+    "title": "Acid Leak! Dead Calculator Batteries",
+    "description": "The reserve scientific calculators corroded over winter break. Replacement batteries needed!",
+    "cost": 18.5,
+    "effects": {
+      "students": -2,
+      "coaches": -6,
+      "parents": 0
+    }
   },
   {
-	"id": "anonymous_donor",
-	"title": "Surprise! Math Club Alum Donation",
-	"description": "A former math club champion sent a gift check to support young mathematicians!",
-	"cost": -45.00,
-	"effects": {
-	  "students": 6,
-	  "coaches": 8,
-	  "parents": 8
-	}
+    "id": "anonymous_donor",
+    "title": "Surprise! Math Club Alum Donation",
+    "description": "A former math club champion sent a gift check to support young mathematicians!",
+    "cost": -45.0,
+    "effects": {
+      "students": 6,
+      "coaches": 8,
+      "parents": 8
+    }
   },
   {
-	"id": "hallway_poster_fine",
-	"title": "Tape Marks on School Wall Fine",
-	"description": "Custodial staff billed the club for special tape cleanup after club rush week.",
-	"cost": 15.00,
-	"effects": {
-	  "students": -2,
-	  "coaches": -5,
-	  "parents": -4
-	}
+    "id": "hallway_poster_fine",
+    "title": "Tape Marks on School Wall Fine",
+    "description": "Custodial staff billed the club for special tape cleanup after club rush week.",
+    "cost": 15.0,
+    "effects": {
+      "students": -2,
+      "coaches": -5,
+      "parents": -4
+    }
+  },
+  {
+    "id": "ptsa_enrichment_grant",
+    "title": "PTSA Innovation Mini-Grant Awarded!",
+    "description": "The Parent-Teacher-Student Association voted to award our math club an STEM enrichment grant!",
+    "cost": -50.0,
+    "effects": {
+      "students": 4,
+      "coaches": 6,
+      "parents": 8
+    }
+  },
+  {
+    "id": "spilled_marker_cleaning",
+    "title": "Ink Catastrophe: Permanent Marker Rug Spill",
+    "description": "An uncapped permanent marker rolled off a desk onto the classroom carpet.",
+    "cost": 16.5,
+    "effects": {
+      "students": -2,
+      "coaches": -5,
+      "parents": 0
+    }
+  },
+  {
+    "id": "state_fair_rebate",
+    "title": "Tournament Early-Bird Registration Rebate",
+    "description": "The tournament committee processed our early submission and returned an overpayment check.",
+    "cost": -30.0,
+    "effects": {
+      "students": 0,
+      "coaches": 6,
+      "parents": 6
+    }
+  },
+  {
+    "id": "lost_stopwatch_box",
+    "title": "Missing Equipment: Digital Timers Box",
+    "description": "A plastic case of backup tournament stopwatches disappeared from the club storage locker.",
+    "cost": 22.0,
+    "effects": {
+      "students": -2,
+      "coaches": -6,
+      "parents": -2
+    }
+  },
+  {
+    "id": "local_bakery_sponsorship",
+    "title": "Community Sponsor: Local Bakery Donation",
+    "description": "A neighborhood bakery sponsored our tournament breakfast with free bagels and pastries!",
+    "cost": -25.0,
+    "effects": {
+      "students": 6,
+      "coaches": 4,
+      "parents": 6
+    }
+  },
+  {
+    "id": "custodial_lockout_fee",
+    "title": "Custodial Unlock After-Hours Fee",
+    "description": "The classroom auto-locked on Friday night with tournament supplies trapped inside.",
+    "cost": 12.0,
+    "effects": {
+      "students": 0,
+      "coaches": -4,
+      "parents": -4
+    }
+  },
+  {
+    "id": "broken_projector_remote",
+    "title": "Hardware Accident: Broken Display Remote",
+    "description": "The smartboard clicker dropped and cracked underfoot during a lively speed round.",
+    "cost": 19.5,
+    "effects": {
+      "students": -2,
+      "coaches": -5,
+      "parents": 0
+    }
   }
 ]

@@ -3,18 +3,55 @@ extends PanelContainer
 
 signal choice_selected(index: int)
 
-@onready var title_label: Label = $VBox/Header/TitleLabel
+@onready var title_label: Label = $VBox/Header/HeaderTop/TitleLabel
+@onready var timer_box: HBoxContainer = $VBox/Header/HeaderTop/TimerBox
+@onready var timer_bar: ProgressBar = $VBox/Header/HeaderTop/TimerBox/TimerBar
+@onready var timer_label: Label = $VBox/Header/HeaderTop/TimerBox/TimerLabel
 @onready var speaker_label: Label = $VBox/Header/SpeakerLabel
 @onready var description_label: Label = $VBox/DescriptionLabel
 @onready var choices_container: VBoxContainer = $VBox/ChoicesContainer
 
 var current_scenario: Scenario = null
+var time_remaining: float = 0.0
+var max_time: float = 0.0
+var is_timer_active: bool = false
 
-func display_scenario(scenario: Scenario) -> void:
+func _process(delta: float) -> void:
+	if not is_timer_active:
+		return
+
+	time_remaining -= delta
+	timer_bar.value = maxf(0.0, time_remaining)
+	var secs := int(ceilf(maxf(0.0, time_remaining)))
+	timer_label.text = "%ds" % secs
+
+	if time_remaining <= 5.0:
+		timer_label.modulate = Color("#ef4444")
+	else:
+		timer_label.modulate = Color("#facc15")
+
+	if time_remaining <= 0.0:
+		is_timer_active = false
+		choice_selected.emit(0)
+
+func display_scenario(scenario: Scenario, timer_limit: int = 0) -> void:
 	current_scenario = scenario
 	title_label.text = scenario.title
 	speaker_label.text = "%s presents this week's situation:" % scenario.speaker
 	description_label.text = scenario.description
+
+	if timer_limit > 0:
+		max_time = float(timer_limit)
+		time_remaining = max_time
+		timer_bar.max_value = max_time
+		timer_bar.value = max_time
+		timer_label.text = "%ds" % timer_limit
+		timer_label.modulate = Color("#facc15")
+		timer_box.visible = true
+		is_timer_active = true
+	else:
+		timer_box.visible = false
+		is_timer_active = false
 
 	# Clear old buttons
 	for child in choices_container.get_children():
@@ -46,7 +83,10 @@ func _create_choice_card(index: int, choice: Choice) -> PanelContainer:
 	btn.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	btn.custom_minimum_size = Vector2(0, 44)
 	btn.add_theme_font_size_override("font_size", 15)
-	btn.pressed.connect(func(): choice_selected.emit(index))
+	btn.pressed.connect(func():
+		is_timer_active = false
+		choice_selected.emit(index)
+	)
 	hbox.add_child(btn)
 
 	# Optional Math badge indicator
