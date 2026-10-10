@@ -54,6 +54,18 @@ theme_override_colors/font_color = Color(0.0627451, 0.72549, 0.505882, 1)
 theme_override_font_sizes/font_size = 20
 text = "$300.00"
 
+[node name="RestartButton" type="Button" parent="VBox/TopRow"]
+custom_minimum_size = Vector2(85, 30)
+layout_mode = 2
+tooltip_text = "Restart current season (Hotkey: R)"
+text = "🔄 Restart"
+
+[node name="ExitButton" type="Button" parent="VBox/TopRow"]
+custom_minimum_size = Vector2(95, 30)
+layout_mode = 2
+tooltip_text = "Exit current game (Hotkey: Esc)"
+text = "🚪 Exit Game"
+
 [node name="MuteButton" type="Button" parent="VBox/TopRow"]
 custom_minimum_size = Vector2(36, 0)
 layout_mode = 2

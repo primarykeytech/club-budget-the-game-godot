@@ -13,6 +13,7 @@ extends Control
 @onready var event_modal: EventModal = $Modals/EventModal
 @onready var summary_modal: SummaryModal = $Modals/SummaryModal
 @onready var end_game_modal: EndGameModal = $Modals/EndGameModal
+@onready var confirm_modal: ConfirmModal = $Modals/ConfirmModal
 
 var state: ClubState = null
 var scenario_mgr: ScenarioManager = ScenarioManager.new("res://data/scenarios.json", "res://data/events.json")
@@ -22,14 +23,20 @@ var timer_limit: int = 0
 
 func _ready() -> void:
 	title_screen.start_pressed.connect(_on_title_start)
+	title_screen.exit_pressed.connect(_on_title_exit)
 	setup_screen.setup_confirmed.connect(_on_setup_confirmed)
 	setup_screen.back_pressed.connect(_on_setup_back)
+
+	hud.restart_pressed.connect(_on_hud_restart_pressed)
+	hud.exit_pressed.connect(_on_hud_exit_pressed)
 
 	scenario_panel.choice_selected.connect(_on_choice_selected)
 	math_modal.math_resolved.connect(_on_math_resolved)
 	event_modal.event_dismissed.connect(_on_event_dismissed)
 	summary_modal.summary_dismissed.connect(_on_summary_dismissed)
 	end_game_modal.restart_requested.connect(_on_restart_requested)
+	confirm_modal.confirmed.connect(_on_confirm_action)
+	confirm_modal.cancelled.connect(_on_confirm_cancelled)
 
 	_show_title()
 
@@ -170,11 +177,45 @@ func _on_restart_requested() -> void:
 	gameplay_view.visible = false
 	setup_screen.visible = true
 
+func _on_title_exit() -> void:
+	_play_sfx("select")
+	get_tree().quit()
+
+func _on_hud_restart_pressed() -> void:
+	_play_sfx("select")
+	confirm_modal.open_confirm(
+		"Restart Season?",
+		"Are you sure you want to abandon the current season and return to club setup?\nAll progress in this season will be reset.",
+		"restart",
+		"Restart Season"
+	)
+
+func _on_hud_exit_pressed() -> void:
+	_play_sfx("select")
+	confirm_modal.open_confirm(
+		"Exit Game?",
+		"Are you sure you want to exit the current season?\nUnsaved progress will be lost.",
+		"exit_to_title",
+		"Exit to Title",
+		true
+	)
+
+func _on_confirm_action(action_id: String) -> void:
+	_play_sfx("confirm")
+	if action_id == "restart":
+		_on_restart_requested()
+	elif action_id == "exit_to_title":
+		_show_title()
+
+func _on_confirm_cancelled() -> void:
+	_play_sfx("select")
+
 func _hide_all_modals() -> void:
 	math_modal.visible = false
 	event_modal.visible = false
 	summary_modal.visible = false
 	end_game_modal.visible = false
+	confirm_modal.visible = false
 
 func _shake_gameplay_view(intensity: float = 6.0) -> void:
 	if not is_inside_tree() or not gameplay_view:
@@ -202,12 +243,27 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 
 	# Modal open takes priority
+	if confirm_modal.visible:
+		if event.is_action_pressed("ui_cancel"):
+			confirm_modal._on_cancel()
+			get_viewport().set_input_as_handled()
+		return
+
 	if math_modal.visible or event_modal.visible or summary_modal.visible or end_game_modal.visible:
 		return
 
-	# Keyboard shortcuts 1, 2, 3 for choice selection
+	# ESC key brings up exit confirmation during gameplay
+	if event.is_action_pressed("ui_cancel"):
+		_on_hud_exit_pressed()
+		get_viewport().set_input_as_handled()
+		return
+
+	# Keyboard shortcuts 1, 2, 3 for choice selection, R for restart
 	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_1:
+		if event.keycode == KEY_R:
+			_on_hud_restart_pressed()
+			get_viewport().set_input_as_handled()
+		elif event.keycode == KEY_1:
 			_on_choice_selected(0)
 		elif event.keycode == KEY_2:
 			_on_choice_selected(1)

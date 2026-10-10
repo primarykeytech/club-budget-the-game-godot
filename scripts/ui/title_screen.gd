@@ -2,11 +2,14 @@ class_name TitleScreen
 extends Control
 
 signal start_pressed()
+signal exit_pressed()
 
 @onready var start_btn: Button = $CenterContainer/Card/VBox/StartButton
+@onready var exit_btn: Button = $CenterContainer/Card/VBox/ExitButton
 
 func _ready() -> void:
 	start_btn.pressed.connect(func(): start_pressed.emit())
+	exit_btn.pressed.connect(func(): exit_pressed.emit())
 	start_btn.grab_focus()
 
 func _unhandled_input(event: InputEvent) -> void:

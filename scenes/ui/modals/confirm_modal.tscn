@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6q1r9t4m2k8x"]
+
+[ext_resource type="Script" path="res://scripts/ui/modals/confirm_modal.gd" id="1_confirm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_backdrop"]
+bg_color = Color(0.02, 0.04, 0.08, 0.82)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_card"]
+content_margin_left = 32.0
+content_margin_top = 28.0
+content_margin_right = 32.0
+content_margin_bottom = 28.0
+bg_color = Color(0.08, 0.12, 0.20, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.35, 0.48, 0.68, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="ConfirmModal" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_backdrop")
+script = ExtResource("1_confirm")
+
+[node name="Card" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_card")
+
+[node name="VBox" type="VBoxContainer" parent="Card"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="TitleLabel" type="Label" parent="Card/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.960784, 0.768627, 0.298039, 1)
+theme_override_font_sizes/font_size = 20
+text = "Confirmation"
+horizontal_alignment = 1
+
+[node name="MessageLabel" type="Label" parent="Card/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.941176, 0.941176, 1)
+theme_override_font_sizes/font_size = 15
+text = "Are you sure you want to proceed?"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ButtonGroup" type="HBoxContainer" parent="Card/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="CancelButton" type="Button" parent="Card/VBox/ButtonGroup"]
+custom_minimum_size = Vector2(110, 42)
+layout_mode = 2
+text = "Cancel"
+
+[node name="ConfirmButton" type="Button" parent="Card/VBox/ButtonGroup"]
+custom_minimum_size = Vector2(130, 42)
+layout_mode = 2
+text = "Confirm"
+
+[node name="DesktopQuitButton" type="Button" parent="Card/VBox/ButtonGroup"]
+visible = false
+custom_minimum_size = Vector2(130, 42)
+layout_mode = 2
+text = "Quit to Desktop"

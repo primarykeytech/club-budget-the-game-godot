@@ -17,6 +17,9 @@ func _ready() -> void:
 	run_test("test_restart_to_setup_flow", test_restart_to_setup_flow)
 	run_test("test_character_names_display", test_character_names_display)
 	run_test("test_timer_integration", test_timer_integration)
+	run_test("test_hud_restart_button_and_confirmation", test_hud_restart_button_and_confirmation)
+	run_test("test_hud_exit_button_and_confirmation", test_hud_exit_button_and_confirmation)
+	run_test("test_title_screen_exit_button", test_title_screen_exit_button)
 
 	print("========================================")
 	print("Results: %d Passed, %d Failed" % [passed_count, failed_count])
@@ -228,6 +231,93 @@ func test_timer_integration() -> String:
 	if not controller.math_modal.feedback_label.text.contains("Time's Up!"):
 		controller.queue_free()
 		return "Expected feedback label to announce 'Time's Up!'"
+
+	controller.queue_free()
+	return ""
+
+func test_hud_restart_button_and_confirmation() -> String:
+	var controller := _create_game_controller()
+	controller._on_setup_confirmed("Restart Test Club", 300.0, 16, 8)
+
+	if not controller.hud.restart_btn.visible:
+		controller.queue_free()
+		return "Expected HUD restart button to be visible"
+
+	if not controller.hud.restart_btn.text.contains("Restart"):
+		controller.queue_free()
+		return "Expected restart button text to contain 'Restart'"
+
+	# Simulate pressing HUD restart button
+	controller.hud.restart_btn.pressed.emit()
+
+	if not controller.confirm_modal.visible:
+		controller.queue_free()
+		return "Expected ConfirmModal to be visible after clicking Restart"
+
+	if not controller.confirm_modal.title_label.text.contains("Restart"):
+		controller.queue_free()
+		return "Expected modal title to mention Restart"
+
+	# Confirm restart
+	controller.confirm_modal.confirm_btn.pressed.emit()
+
+	if controller.gameplay_view.visible:
+		controller.queue_free()
+		return "Expected gameplay view to hide after confirming restart"
+
+	if not controller.setup_screen.visible:
+		controller.queue_free()
+		return "Expected setup screen to show after confirming restart"
+
+	controller.queue_free()
+	return ""
+
+func test_hud_exit_button_and_confirmation() -> String:
+	var controller := _create_game_controller()
+	controller._on_setup_confirmed("Exit Test Club", 300.0, 16, 8)
+
+	if not controller.hud.exit_btn.visible:
+		controller.queue_free()
+		return "Expected HUD exit button to be visible"
+
+	if not controller.hud.exit_btn.text.contains("Exit"):
+		controller.queue_free()
+		return "Expected exit button text to contain 'Exit'"
+
+	# Simulate pressing HUD exit button
+	controller.hud.exit_btn.pressed.emit()
+
+	if not controller.confirm_modal.visible:
+		controller.queue_free()
+		return "Expected ConfirmModal to be visible after clicking Exit Game"
+
+	if not controller.confirm_modal.title_label.text.contains("Exit"):
+		controller.queue_free()
+		return "Expected modal title to mention Exit"
+
+	# Confirm exit to title
+	controller.confirm_modal.confirm_btn.pressed.emit()
+
+	if controller.gameplay_view.visible:
+		controller.queue_free()
+		return "Expected gameplay view to hide after confirming exit"
+
+	if not controller.title_screen.visible:
+		controller.queue_free()
+		return "Expected title screen to show after confirming exit"
+
+	controller.queue_free()
+	return ""
+
+func test_title_screen_exit_button() -> String:
+	var controller := _create_game_controller()
+	if not controller.title_screen.exit_btn.visible:
+		controller.queue_free()
+		return "Expected title screen exit button to be visible"
+
+	if not controller.title_screen.exit_btn.text.contains("Exit"):
+		controller.queue_free()
+		return "Expected title screen exit button text to contain 'Exit'"
 
 	controller.queue_free()
 	return ""

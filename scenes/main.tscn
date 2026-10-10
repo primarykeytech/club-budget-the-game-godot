@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b0c8r6q4t2y5m"]
+[gd_scene load_steps=14 format=3 uid="uid://b0c8r6q4t2y5m"]
 
 [ext_resource type="Script" path="res://scripts/ui/game_controller.gd" id="1_controller"]
 [ext_resource type="Texture2D" path="res://assets/images/backgrounds/classroom_bg.jpg" id="2_bg"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/modals/event_modal.tscn" id="9_event"]
 [ext_resource type="PackedScene" path="res://scenes/ui/modals/summary_modal.tscn" id="10_summary"]
 [ext_resource type="PackedScene" path="res://scenes/ui/modals/end_game_modal.tscn" id="11_end"]
+[ext_resource type="PackedScene" path="res://scenes/ui/modals/confirm_modal.tscn" id="12_confirm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_main_bg"]
 bg_color = Color(0.027451, 0.0431373, 0.0705882, 1)
@@ -108,5 +109,9 @@ visible = false
 layout_mode = 1
 
 [node name="EndGameModal" parent="Modals" instance=ExtResource("11_end")]
+visible = false
+layout_mode = 1
+
+[node name="ConfirmModal" parent="Modals" instance=ExtResource("12_confirm")]
 visible = false
 layout_mode = 1

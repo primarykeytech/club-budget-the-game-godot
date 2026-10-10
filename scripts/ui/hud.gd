@@ -1,9 +1,14 @@
 class_name HUD
 extends PanelContainer
 
+signal restart_pressed()
+signal exit_pressed()
+
 @onready var club_name_label: Label = $VBox/TopRow/ClubNameLabel
 @onready var week_label: Label = $VBox/TopRow/WeekLabel
 @onready var budget_label: Label = $VBox/TopRow/BudgetLabel
+@onready var restart_btn: Button = $VBox/TopRow/RestartButton
+@onready var exit_btn: Button = $VBox/TopRow/ExitButton
 @onready var mute_btn: Button = $VBox/TopRow/MuteButton
 @onready var burn_rate_label: Label = $VBox/BurnRateLabel
 
@@ -20,6 +25,8 @@ var displayed_budget: float = -1.0
 var warning_tween: Tween = null
 
 func _ready() -> void:
+	restart_btn.pressed.connect(func(): restart_pressed.emit())
+	exit_btn.pressed.connect(func(): exit_pressed.emit())
 	mute_btn.pressed.connect(_on_mute_pressed)
 	if has_node("/root/AudioManager"):
 		var audio = get_node("/root/AudioManager")
