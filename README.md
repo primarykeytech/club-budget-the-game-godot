@@ -35,9 +35,10 @@ Players act as treasurer and advisor for an afterschool math club, navigating fi
     - [`EventModal`](res://scenes/ui/modals/event_modal.tscn): Mid-season unexpected crisis / grant announcements.
     - [`SummaryModal`](res://scenes/ui/modals/summary_modal.tscn): End-of-week ledger and reaction quote recap.
     - [`EndGameModal`](res://scenes/ui/modals/end_game_modal.tscn): Victory celebration / season failure summary with restart capabilities.
+    - [`ConfirmModal`](res://scenes/ui/modals/confirm_modal.tscn): Confirmation modal for in-game restart and exit requests.
   - **Title & Setup Screens:**
-    - [`TitleScreen`](res://scenes/ui/title_screen.tscn): Objective overview and prompt to start.
-    - [`SetupScreen`](res://scenes/ui/setup_screen.tscn): Name selection presets, starting budget slider ($100–$1000), student roster slider (4–36), and season length slider (4–30).
+    - [`TitleScreen`](res://scenes/ui/title_screen.tscn): Objective overview, Start Game, and Exit Game buttons.
+    - [`SetupScreen`](res://scenes/ui/setup_screen.tscn): Name selection presets, starting budget slider ($100–$1000), student roster slider (4–36), season length slider (4–28), and question timer options (Off, 30s, 60s, 90s, 120s).
 
 ### Phase 3: Modern Art & Audio Assets ✅
 - **High-Resolution Character Portraits (`assets/images/characters/`):**
