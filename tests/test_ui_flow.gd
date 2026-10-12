@@ -21,6 +21,7 @@ func _ready() -> void:
 	run_test("test_hud_exit_button_and_confirmation", test_hud_exit_button_and_confirmation)
 	run_test("test_title_screen_exit_button", test_title_screen_exit_button)
 	run_test("test_title_screen_copyright_label", test_title_screen_copyright_label)
+	run_test("test_audio_manager_autoload", test_audio_manager_autoload)
 
 	print("========================================")
 	print("Results: %d Passed, %d Failed" % [passed_count, failed_count])
@@ -336,3 +337,27 @@ func test_title_screen_copyright_label() -> String:
 
 	controller.queue_free()
 	return ""
+
+func test_audio_manager_autoload() -> String:
+	if not has_node("/root/AudioManager"):
+		return "Expected /root/AudioManager autoload to be present and instantiated"
+
+	var audio = get_node("/root/AudioManager")
+	if not is_instance_valid(audio):
+		return "AudioManager node is invalid"
+
+	if not audio.has_method("play_sfx"):
+		return "AudioManager missing play_sfx method"
+	if not audio.has_method("toggle_mute"):
+		return "AudioManager missing toggle_mute method"
+
+	if audio.sfx_streams.size() != 7:
+		return "Expected 7 SFX streams loaded, got %d" % audio.sfx_streams.size()
+
+	var initial_muted: bool = audio.is_muted
+	var toggled: bool = audio.toggle_mute()
+	if toggled == initial_muted:
+		return "toggle_mute did not invert mute state"
+	audio.set_muted(initial_muted)
+	return ""
+
