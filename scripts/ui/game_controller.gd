@@ -37,8 +37,11 @@ func _ready() -> void:
 	end_game_modal.restart_requested.connect(_on_restart_requested)
 	confirm_modal.confirmed.connect(_on_confirm_action)
 	confirm_modal.cancelled.connect(_on_confirm_cancelled)
-
 	_show_title()
+
+	# Desktop platforms launch in fullscreen by default; Web builds stay embedded in iframe
+	if not OS.has_feature("web"):
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 
 func _play_sfx(sound_name: String) -> void:
 	if has_node("/root/AudioManager"):
