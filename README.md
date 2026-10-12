@@ -45,6 +45,8 @@ Players act as treasurer and advisor for an afterschool math club, navigating fi
   - **Piper (Student Rep):** Illustrated portrait bust with red pi baseball cap, curls, and yellow math club hoodie.
   - **Coach John (Head Coach):** Illustrated portrait bust with dark wavy hair, warm smile, and royal blue coaching polo with math compass emblem.
   - **Ms. Chaidee (Parent):** Illustrated portrait bust with sleek bob, purple cardigan, and warm coffee mug.
+- **itch.io Promotional Cover Tile ([`cover_itch.jpg`](file:///c:/Users/john/git/club-budget-the-game-godot/cover_itch.jpg)):**
+  - Action-packed 4:3 promotional game tile featuring Piper, Coach John, and Ms. Chaidee with flying math coins, geometry polyhedrons, speed lines, and 3D arcade typography matching the *Math Water Balloon Fight* visual brand identity.
 - **Classroom Environment Background (`assets/images/backgrounds/`):**
   - Warm sunlit classroom interior with chalk formulas, math diagrams, and banners.
 - **Complete Audio System (`scripts/audio/audio_manager.gd`):**
