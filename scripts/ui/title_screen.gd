@@ -6,6 +6,7 @@ signal exit_pressed()
 
 @onready var start_btn: Button = $CenterContainer/Card/VBox/StartButton
 @onready var exit_btn: Button = $CenterContainer/Card/VBox/ExitButton
+@onready var copyright_label: Label = $CopyrightLabel
 
 func _ready() -> void:
 	start_btn.pressed.connect(func(): start_pressed.emit())

@@ -124,3 +124,18 @@ theme_override_colors/font_color = Color(0.45, 0.55, 0.68, 1)
 theme_override_font_sizes/font_size = 12
 text = "Press ENTER / SPACE or Click to Begin"
 horizontal_alignment = 1
+
+[node name="CopyrightLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.45098, 0.54902, 0.678431, 1)
+theme_override_font_sizes/font_size = 13
+text = "Copyright © 2026 by Primary Key Technologies, Inc."
+horizontal_alignment = 1

@@ -20,6 +20,7 @@ func _ready() -> void:
 	run_test("test_hud_restart_button_and_confirmation", test_hud_restart_button_and_confirmation)
 	run_test("test_hud_exit_button_and_confirmation", test_hud_exit_button_and_confirmation)
 	run_test("test_title_screen_exit_button", test_title_screen_exit_button)
+	run_test("test_title_screen_copyright_label", test_title_screen_copyright_label)
 
 	print("========================================")
 	print("Results: %d Passed, %d Failed" % [passed_count, failed_count])
@@ -318,6 +319,20 @@ func test_title_screen_exit_button() -> String:
 	if not controller.title_screen.exit_btn.text.contains("Exit"):
 		controller.queue_free()
 		return "Expected title screen exit button text to contain 'Exit'"
+
+	controller.queue_free()
+	return ""
+
+func test_title_screen_copyright_label() -> String:
+	var controller := _create_game_controller()
+	if not controller.title_screen.copyright_label.visible:
+		controller.queue_free()
+		return "Expected title screen copyright label to be visible"
+
+	var text: String = controller.title_screen.copyright_label.text
+	if text != "Copyright © 2026 by Primary Key Technologies, Inc.":
+		controller.queue_free()
+		return "Expected copyright text 'Copyright © 2026 by Primary Key Technologies, Inc.', got '%s'" % text
 
 	controller.queue_free()
 	return ""
