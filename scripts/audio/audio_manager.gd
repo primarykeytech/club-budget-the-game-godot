@@ -79,4 +79,3 @@ func _unhandled_input(event: InputEvent) -> void:
 	if not is_muted and music_player and not music_player.playing:
 		if event is InputEventMouseButton or event is InputEventKey:
 			play_music()
-

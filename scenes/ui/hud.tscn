@@ -58,20 +58,19 @@ text = "$300.00"
 custom_minimum_size = Vector2(85, 30)
 layout_mode = 2
 tooltip_text = "Restart current season (Hotkey: R)"
-text = "🔄 Restart"
+text = "Restart"
 
 [node name="ExitButton" type="Button" parent="VBox/TopRow"]
 custom_minimum_size = Vector2(95, 30)
 layout_mode = 2
 tooltip_text = "Exit current game (Hotkey: Esc)"
-text = "🚪 Exit Game"
+text = "Exit Game"
 
 [node name="MuteButton" type="Button" parent="VBox/TopRow"]
-custom_minimum_size = Vector2(36, 0)
+custom_minimum_size = Vector2(65, 30)
 layout_mode = 2
 tooltip_text = "Toggle Audio Mute (Hotkey: M)"
-text = "🔊"
-flat = true
+text = "Mute"
 
 [node name="BurnRateLabel" type="Label" parent="VBox"]
 layout_mode = 2

@@ -25,9 +25,9 @@ func update_stage(speaker: String, happiness_dict: Dictionary) -> void:
 	_set_speaker_highlight(parent_card, speaker_clean == "parent")
 
 	# Update emotional statuses and avatars
-	_update_card_mood(student_mood_label, student_avatar, float(happiness_dict.get("students", 70.0)), ["😃 Thrilled", "🙂 Content", "😟 Worried", "😭 Mutiny"])
-	_update_card_mood(coach_mood_label, coach_avatar, float(happiness_dict.get("coaches", 70.0)), ["😄 Confident", "🙂 Engaged", "😓 Burnt Out", "😫 Resigned"])
-	_update_card_mood(parent_mood_label, parent_avatar, float(happiness_dict.get("parents", 70.0)), ["😊 Supportive", "🙂 Neutral", "🤨 Concerned", "😡 Boycott"])
+	_update_card_mood(student_mood_label, student_avatar, float(happiness_dict.get("students", 70.0)), ["Thrilled", "Content", "Worried", "Mutiny"])
+	_update_card_mood(coach_mood_label, coach_avatar, float(happiness_dict.get("coaches", 70.0)), ["Confident", "Engaged", "Burnt Out", "Resigned"])
+	_update_card_mood(parent_mood_label, parent_avatar, float(happiness_dict.get("parents", 70.0)), ["Supportive", "Neutral", "Concerned", "Boycott"])
 
 func show_morale_deltas(effects: Dictionary) -> void:
 	_trigger_delta(student_card, int(effects.get("students", 0)))

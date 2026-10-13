@@ -110,7 +110,7 @@ func _on_time_expired() -> void:
 	var penalty_str := ""
 	if current_challenge.penalty_cost > 0:
 		penalty_str = " (Administrative penalty: -$%.2f)" % current_challenge.penalty_cost
-	feedback_label.text = "⏰ Time's Up!\nYou ran out of time to solve the challenge.\nThe correct answer was %s%.2f.%s\nStakeholder morale suffered a slight dip." % [
+	feedback_label.text = "Time's Up!\nYou ran out of time to solve the challenge.\nThe correct answer was %s%.2f.%s\nStakeholder morale suffered a slight dip." % [
 		current_challenge.unit, current_challenge.answer, penalty_str
 	]
 	feedback_panel.add_theme_stylebox_override("panel", style)
@@ -136,7 +136,7 @@ func _on_option_chosen(chosen_val: float) -> void:
 	if is_correct:
 		style.bg_color = Color(0.06, 0.35, 0.20, 0.95)
 		style.border_color = Color("#10b981")
-		feedback_label.text = "🎉 Correct! (%s%.2f)\nEarned +%d Bonus Happiness across stakeholders!" % [
+		feedback_label.text = "Correct! (%s%.2f)\nEarned +%d Bonus Happiness across stakeholders!" % [
 			current_challenge.unit, current_challenge.answer, current_challenge.bonus_happiness
 		]
 		# Spawn celebratory confetti
@@ -148,7 +148,7 @@ func _on_option_chosen(chosen_val: float) -> void:
 		var penalty_str := ""
 		if current_challenge.penalty_cost > 0:
 			penalty_str = " (Administrative penalty: -$%.2f)" % current_challenge.penalty_cost
-		feedback_label.text = "❌ Incorrect!\nThe correct answer was %s%.2f.%s\nStakeholder morale suffered a slight dip." % [
+		feedback_label.text = "Incorrect!\nThe correct answer was %s%.2f.%s\nStakeholder morale suffered a slight dip." % [
 			current_challenge.unit, current_challenge.answer, penalty_str
 		]
 	feedback_panel.add_theme_stylebox_override("panel", style)

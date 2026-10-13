@@ -14,7 +14,7 @@ func _ready() -> void:
 	dismiss_btn.pressed.connect(_on_dismiss)
 
 func open_event(event: GameEvent) -> void:
-	title_label.text = "⚡ %s" % event.title
+	title_label.text = event.title
 	description_label.text = event.description
 
 	if event.cost > 0.0:

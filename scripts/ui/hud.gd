@@ -42,7 +42,7 @@ func _on_mute_state_changed(is_muted: bool) -> void:
 	_update_mute_icon(is_muted)
 
 func _update_mute_icon(is_muted: bool) -> void:
-	mute_btn.text = "🔇" if is_muted else "🔊"
+	mute_btn.text = "Unmute" if is_muted else "Mute"
 
 func update_hud(state: ClubState, animated: bool = true) -> void:
 	club_name_label.text = state.club_name.to_upper()
@@ -58,15 +58,15 @@ func update_hud(state: ClubState, animated: bool = true) -> void:
 	)
 
 	if min_happiness < 40.0:
-		burn_rate_label.text = "⚠️ CRITICAL MORALE DANGER: SCORE < 40% TRIGGERS LOSS!"
+		burn_rate_label.text = "[!] CRITICAL MORALE DANGER: SCORE < 40% TRIGGERS LOSS!"
 		burn_rate_label.modulate = Color("#ef4444")
 		_pulse_warning()
 	elif min_happiness < 48.0:
-		burn_rate_label.text = "⚠️ MORALE WARNING: STAKEHOLDER MORALE NEARING DANGER ZONE (< 40%)"
+		burn_rate_label.text = "[!] MORALE WARNING: STAKEHOLDER MORALE NEARING DANGER ZONE (< 40%)"
 		burn_rate_label.modulate = Color("#f59e0b")
 		_stop_pulse_warning()
 	elif state.budget < 30.0:
-		burn_rate_label.text = "⚠️ LOW BUDGET WARNING: AVOID DEFICIT TO PREVENT BANKRUPTCY!"
+		burn_rate_label.text = "[!] LOW BUDGET WARNING: AVOID DEFICIT TO PREVENT BANKRUPTCY!"
 		burn_rate_label.modulate = Color("#ef4444")
 		_pulse_warning()
 	else:

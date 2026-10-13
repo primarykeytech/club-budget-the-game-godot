@@ -16,7 +16,7 @@ func _ready() -> void:
 	restart_btn.pressed.connect(_on_restart)
 
 func open_game_over(reason: String, state: ClubState) -> void:
-	icon_label.text = "🚨"
+	icon_label.text = "[!]"
 	title_label.text = "SEASON SUSPENDED"
 	title_label.modulate = Color("#ef4444")
 	message_label.text = reason
@@ -35,7 +35,7 @@ func open_game_over(reason: String, state: ClubState) -> void:
 	restart_btn.grab_focus()
 
 func open_victory(msg: String, state: ClubState) -> void:
-	icon_label.text = "🏆"
+	icon_label.text = "*** GOLD RIBBON ***"
 	title_label.text = "GOLD RIBBON SEASON!"
 	title_label.modulate = Color("#fbbf24")
 	message_label.text = msg

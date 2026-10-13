@@ -92,7 +92,7 @@ func _create_choice_card(index: int, choice: Choice) -> PanelContainer:
 	# Optional Math badge indicator
 	if choice.math_challenge != null:
 		var math_badge := Label.new()
-		math_badge.text = "📐 Math Challenge!"
+		math_badge.text = "[Math Challenge]"
 		math_badge.modulate = Color("#38bdf8")
 		math_badge.add_theme_font_size_override("font_size", 13)
 		hbox.add_child(math_badge)

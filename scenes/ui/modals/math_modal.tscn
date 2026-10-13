@@ -63,8 +63,8 @@ alignment = 1
 
 [node name="Icon" type="Label" parent="Card/VBox/Header"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
-text = "📐"
+theme_override_font_sizes/font_size = 20
+text = "[MATH]"
 
 [node name="Title" type="Label" parent="Card/VBox/Header"]
 layout_mode = 2
@@ -80,8 +80,8 @@ theme_override_constants/separation = 10
 
 [node name="TimerIcon" type="Label" parent="Card/VBox/TimerBox"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
-text = "⏱️"
+theme_override_font_sizes/font_size = 14
+text = "TIME:"
 
 [node name="TimerBar" type="ProgressBar" parent="Card/VBox/TimerBox"]
 custom_minimum_size = Vector2(160, 14)
