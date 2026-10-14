@@ -354,10 +354,25 @@ func test_audio_manager_autoload() -> String:
 	if audio.sfx_streams.size() != 7:
 		return "Expected 7 SFX streams loaded, got %d" % audio.sfx_streams.size()
 
+	if audio.music_player == null:
+		return "Expected music_player node to exist in AudioManager"
+	if audio.music_player.stream == null:
+		return "Expected music_player to have a valid stream"
+	if audio.music_player.stream.get_length() < 20.0:
+		return "Expected full soundtrack (> 20s), got %0.1fs" % audio.music_player.stream.get_length()
+
+	var wav: AudioStreamWAV = audio.music_player.stream as AudioStreamWAV
+	if wav != null:
+		if wav.loop_mode != AudioStreamWAV.LOOP_FORWARD:
+			return "Expected music_stream loop_mode to be LOOP_FORWARD"
+		if wav.loop_end <= 0:
+			return "Expected music_stream loop_end to be positive sample count, got %d" % wav.loop_end
+
 	var initial_muted: bool = audio.is_muted
 	var toggled: bool = audio.toggle_mute()
 	if toggled == initial_muted:
 		return "toggle_mute did not invert mute state"
 	audio.set_muted(initial_muted)
 	return ""
+
 

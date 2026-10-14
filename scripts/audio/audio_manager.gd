@@ -28,11 +28,21 @@ func _ready() -> void:
 	music_player.stream = music_stream
 	# Enable loop on music if supported
 	if music_stream is AudioStreamWAV:
-		(music_stream as AudioStreamWAV).loop_mode = AudioStreamWAV.LOOP_FORWARD
+		var wav := music_stream as AudioStreamWAV
+		wav.loop_mode = AudioStreamWAV.LOOP_FORWARD
+		wav.loop_begin = 0
+		wav.loop_end = int(wav.get_length() * wav.mix_rate)
 	add_child(music_player)
+
+	# Ensure music continuously replays when stream ends as a bulletproof loop fallback
+	music_player.finished.connect(_on_music_finished)
 
 	# Auto-start cozy music
 	play_music()
+
+func _on_music_finished() -> void:
+	if not is_muted:
+		music_player.play()
 
 func play_sfx(sound_name: String) -> void:
 	if is_muted:
@@ -68,7 +78,7 @@ func set_muted(mute: bool) -> void:
 		music_player.play()
 	mute_toggled.emit(is_muted)
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		if event.keycode == KEY_M:
 			toggle_mute()
@@ -77,5 +87,5 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	# Handle browser autoplay restrictions: start music on first user input if not already playing
 	if not is_muted and music_player and not music_player.playing:
-		if event is InputEventMouseButton or event is InputEventKey:
+		if (event is InputEventMouseButton and event.pressed) or (event is InputEventKey and event.pressed):
 			play_music()
